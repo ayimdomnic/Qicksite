@@ -3,9 +3,9 @@
 namespace Ayimdomnic\Services;
 
 use Illuminate\Support\Facades\Response;
-class QuarxResponseService
-{
 
+class QuickSiteResponseService
+{
     /**
      * Generate an api response.
      *
@@ -18,7 +18,7 @@ class QuarxResponseService
     {
         return Response::json(['status' => $type, 'data' => $message], $code);
     }
-    
+
     /**
      * Generate an API error response.
      *
@@ -44,6 +44,7 @@ class QuarxResponseService
                 ];
             }
         }
+
         return Response::json(['status' => 'error', 'data' => $message]);
     }
 }
