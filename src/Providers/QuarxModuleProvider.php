@@ -5,7 +5,7 @@ namespace Ayimdomnic\QuickSite\Providers;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
-class quicksiteModuleProvider extends ServiceProvider
+class QuarxModuleProvider extends ServiceProvider
 {
     /**
      * Register the services.

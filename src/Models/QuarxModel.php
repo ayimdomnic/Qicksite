@@ -5,7 +5,7 @@ namespace Ayimdomnic\QuickSite\Models;
 use Illuminate\Database\Eloquent\Model;
 use Log;
 
-class quicksiteModel extends Model
+class QuarxModel extends Model
 {
     /**
      * After the item is saved to the database.

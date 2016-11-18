@@ -2,13 +2,13 @@
 
 namespace Ayimdomnic\QuickSite\Controllers;
 
-use Illuminate\Http\Request;
-use quicksite;
 use Ayimdomnic\QuickSite\Models\Menu;
 use Ayimdomnic\QuickSite\Repositories\LinkRepository;
 use Ayimdomnic\QuickSite\Repositories\MenuRepository;
 use Ayimdomnic\QuickSite\Requests\MenuRequest;
 use Ayimdomnic\QuickSite\Services\ValidationService;
+use Illuminate\Http\Request;
+use quicksite;
 
 class MenuController extends quicksiteController
 {

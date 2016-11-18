@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Gate;
 
-class quicksite
+class Quarx
 {
     /**
      * Handle an incoming request.

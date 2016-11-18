@@ -5,7 +5,7 @@ namespace app\Http\Middleware;
 use Closure;
 use Config;
 
-class quicksiteApi
+class QuarxApi
 {
     /**
      * Handle an incoming request.

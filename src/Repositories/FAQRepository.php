@@ -2,10 +2,10 @@
 
 namespace Ayimdomnic\QuickSite\Repositories;
 
+use Ayimdomnic\QuickSite\Models\FAQ;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
-use Ayimdomnic\QuickSite\Models\FAQ;
 
 class FAQRepository
 {

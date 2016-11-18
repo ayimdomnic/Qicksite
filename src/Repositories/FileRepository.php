@@ -3,11 +3,11 @@
 namespace Ayimdomnic\QuickSite\Repositories;
 
 use Auth;
+use Ayimdomnic\QuickSite\Models\File;
+use Ayimdomnic\QuickSite\Services\FileService;
 use Config;
 use CryptoService;
 use Illuminate\Support\Facades\Schema;
-use Ayimdomnic\QuickSite\Models\File;
-use Ayimdomnic\QuickSite\Services\FileService;
 
 class FileRepository
 {

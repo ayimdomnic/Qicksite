@@ -2,8 +2,8 @@
 
 namespace Ayimdomnic\QuickSite\Repositories;
 
-use Illuminate\Support\Facades\Schema;
 use Ayimdomnic\QuickSite\Models\Menu;
+use Illuminate\Support\Facades\Schema;
 
 class MenuRepository
 {

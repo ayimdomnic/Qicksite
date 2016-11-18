@@ -2,13 +2,13 @@
 
 namespace Ayimdomnic\QuickSite\Controllers;
 
-use Illuminate\Http\Request;
-use quicksite;
-use URL;
 use Ayimdomnic\QuickSite\Models\Widget;
 use Ayimdomnic\QuickSite\Repositories\WidgetRepository;
 use Ayimdomnic\QuickSite\Requests\WidgetsRequest;
 use Ayimdomnic\QuickSite\Services\ValidationService;
+use Illuminate\Http\Request;
+use quicksite;
+use URL;
 
 class WidgetsController extends quicksiteController
 {
