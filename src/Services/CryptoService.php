@@ -1,4 +1,5 @@
 <?php
+
 namespace Ayimdomnic\Quicksite\Services;
 
 class CryptoService
@@ -74,6 +75,7 @@ class CryptoService
     {
         $iv = substr(md5(random_bytes(16)), 0, 16);
         $encrypted = openssl_encrypt($value, $this->encoding, $this->password, null, $iv);
+
         return $this->url_encode($iv.$encrypted);
     }
 
@@ -91,6 +93,7 @@ class CryptoService
         $decoded = $this->url_decode($value);
         $iv = substr($decoded, 0, 16);
         $encryptedValue = str_replace($iv, '', $decoded);
+
         return trim(openssl_decrypt($encryptedValue, $this->encoding, $this->password, null, $iv));
     }
 
