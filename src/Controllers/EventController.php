@@ -7,7 +7,7 @@ use Ayimdomnic\QuickSite\Repositories\EventRepository;
 use Ayimdomnic\QuickSite\Requests\EventRequest;
 use Ayimdomnic\QuickSite\Services\ValidationService;
 use Illuminate\Http\Request;
-use quicksite;
+use QuickSite;
 use URL;
 
 class EventController extends quicksiteController

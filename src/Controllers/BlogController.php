@@ -7,10 +7,10 @@ use Ayimdomnic\QuickSite\Repositories\BlogRepository;
 use Ayimdomnic\QuickSite\Requests\BlogRequest;
 use Ayimdomnic\QuickSite\Services\ValidationService;
 use Illuminate\Http\Request;
-use quicksite;
+use QuickSite;
 use URL;
 
-class BlogController extends quicksiteController
+class BlogController extends QuickSiteController
 {
     /** @var BlogRepository */
     private $blogRepository;
@@ -155,7 +155,7 @@ class BlogController extends quicksiteController
 
         $blog->delete();
 
-        quicksite::notification('Blog deleted successfully.', 'success');
+        Quicksite::notification('Blog deleted successfully.', 'success');
 
         return redirect(route('quicksite.blog.index'));
     }

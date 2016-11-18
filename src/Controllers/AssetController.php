@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Image;
-use quicksite;
+use QuickSite;
 use SplFileInfo;
 
-class AssetController extends quicksiteController
+class AssetController extends QuickSiteController
 {
     protected $mimeTypes;
 
