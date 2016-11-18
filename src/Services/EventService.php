@@ -1,11 +1,11 @@
 <?php
+
 namespace Ayimdomnic\Quicksite\Services;
 
+use Ayimdomnic\Quicksite\Repositories\EventRepository;
 use Carbon\Carbon;
-
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\URL;
-use Ayimdomnic\Quicksite\Repositories\EventRepository;
 
 class EventService
 {
@@ -15,6 +15,7 @@ class EventService
         $this->weeks = [];
         $this->date = null;
     }
+
     public function generate($date = null)
     {
         $this->date = $date;
@@ -32,8 +33,10 @@ class EventService
             }
             $this->weeks[$day->weekOfYear][$dayOfTheWeek] = $day;
         }
+
         return $this;
     }
+
     public function calendar($date)
     {
         $events = $this->eventRepository->all();
@@ -52,8 +55,10 @@ class EventService
                 }
             }
         }
+
         return $eventsByDate;
     }
+
     public function asHtml($config)
     {
         $class = $config['class'];
@@ -102,8 +107,10 @@ class EventService
             $output .= '</tr>';
         }
         $output .= '</table>';
+
         return $output;
     }
+
     public function links($class = null)
     {
         if (is_null($class)) {
@@ -115,8 +122,10 @@ class EventService
         $links = '';
         $links .= '<a class="previous '.$class.'" href="'.URL::to('events/'.$previousMonth).'">Previous Month</a>';
         $links .= '<a class="next '.$class.'" href="'.URL::to('events/'.$nextMonth).'">Next Month</a>';
+
         return $links;
     }
+
     public function getTemplatesAsOptions()
     {
         $availableTemplates = ['show'];
@@ -130,6 +139,7 @@ class EventService
                 }
             }
         }
+
         return $availableTemplates;
     }
 }

@@ -19,6 +19,7 @@ class BlogService
                 }
             }
         }
+
         return $availableTemplates;
     }
 }

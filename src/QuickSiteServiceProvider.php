@@ -2,36 +2,31 @@
 
 namespace Ayimdomnic\QuickSite;
 
-
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-
 use Quicksite;
 
 /**
-* package name: QuickSite
-* author: ayimdonic
-* email: ayimdomnic@gmail.com
-*
-*
-*/
+ * package name: QuickSite
+ * author: ayimdonic
+ * email: ayimdomnic@gmail.com.
+ */
 class QuickSiteServiceProvider extends ServiceProvider
 {
-	
-	public function boot()
-	{
-		$this->publishes([
+    public function boot()
+    {
+        $this->publishes([
 
 
-			//define the publishables here
+            //define the publishables here
 
-		]);
+        ]);
 
-		$this->loadMigrationsFrom(__DIR__.'/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/Migrations');
 
         $theme = Config::get('qucksite.frontend-theme', 'default');
 
@@ -53,6 +48,7 @@ class QuickSiteServiceProvider extends ServiceProvider
 
             $theme = Config::get('quicksite.frontend-theme');
             $view = '"quicksite-frontend::'.str_replace('"', '', str_replace("'", '', $expression)).'"';
+
             return "<?php echo \$__env->make($view, array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>";
         });
 
@@ -110,6 +106,5 @@ class QuickSiteServiceProvider extends ServiceProvider
             \Ayimdomnic\Quicksite\Console\ModuleCrud::class,
             \Ayimdomnic\Quicksite\Console\Setup::class,
         ]);
-
-	}
+    }
 }
