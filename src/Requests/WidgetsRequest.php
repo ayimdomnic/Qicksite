@@ -4,8 +4,8 @@ namespace Yab\Quarx\Requests;
 
 use Auth;
 use Gate;
-use Yab\Quarx\Models\Widget;
 use Illuminate\Foundation\Http\FormRequest;
+use Yab\Quarx\Models\Widget;
 
 class WidgetsRequest extends FormRequest
 {

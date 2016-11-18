@@ -2,13 +2,13 @@
 
 namespace Yab\Quarx\Controllers;
 
-use URL;
-use Quarx;
-use Yab\Quarx\Models\Blog;
 use Illuminate\Http\Request;
+use Quarx;
+use URL;
+use Yab\Quarx\Models\Blog;
+use Yab\Quarx\Repositories\BlogRepository;
 use Yab\Quarx\Requests\BlogRequest;
 use Yab\Quarx\Services\ValidationService;
-use Yab\Quarx\Repositories\BlogRepository;
 
 class BlogController extends QuarxController
 {
