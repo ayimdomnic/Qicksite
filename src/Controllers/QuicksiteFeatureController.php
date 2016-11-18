@@ -61,10 +61,10 @@ class QuicksiteFeatureController extends QuicksiteController
      */
     public function preview($entity, $id)
     {
-        $modelString = 'Yab\Quicksite\Models\\'.ucfirst($entity);
+        $modelString = 'Ayimdomnic\Quicksite\Models\\'.ucfirst($entity);
 
         if (!class_exists($modelString)) {
-            $modelString = 'Yab\Quicksite\Models\\'.ucfirst($entity).'s';
+            $modelString = 'Ayimdomnic\Quicksite\Models\\'.ucfirst($entity).'s';
         }
 
         $model = new $modelString();
