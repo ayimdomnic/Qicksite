@@ -1,4 +1,5 @@
 <?php
+
 class TestCase extends Orchestra\Testbench\TestCase
 {
     /**
@@ -23,6 +24,7 @@ class TestCase extends Orchestra\Testbench\TestCase
             return true;
         });
     }
+
     /**
      * getPackageProviders.
      *
@@ -39,6 +41,7 @@ class TestCase extends Orchestra\Testbench\TestCase
             \Yab\Laracogs\LaracogsProvider::class,
         ];
     }
+
     protected function getPackageAliases($app)
     {
         return [
@@ -49,6 +52,7 @@ class TestCase extends Orchestra\Testbench\TestCase
             'Crypto'     => \Yab\Laracogs\Utilities\Crypto::class,
         ];
     }
+
     /**
      * Setup the test environment.
      */
@@ -71,6 +75,7 @@ class TestCase extends Orchestra\Testbench\TestCase
         $this->withoutMiddleware();
         $this->withoutEvents();
     }
+
     /*
     |--------------------------------------------------------------------------
     | Landing
