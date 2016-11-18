@@ -1,13 +1,17 @@
 <?php
+
 namespace Ayimdomnic\Quicksite\Services;
-use Illuminate\Support\Facades\Config;
+
 use Ayimdomnic\Quicksite\Repositories\PageRepository;
+use Illuminate\Support\Facades\Config;
+
 class PageService
 {
     public function __construct()
     {
         $this->pageRepo = new PageRepository();
     }
+
     public function getPagesAsOptions()
     {
         $pages = [];
@@ -15,8 +19,10 @@ class PageService
         foreach ($publishedPages as $page) {
             $pages[$page->title] = $page->id;
         }
+
         return $pages;
     }
+
     public function getTemplatesAsOptions()
     {
         $availableTemplates = ['show'];
@@ -30,11 +36,14 @@ class PageService
                 }
             }
         }
+
         return $availableTemplates;
     }
+
     public function pageName($id)
     {
         $page = $this->pageRepo->findPagesById($id);
+
         return $page->title;
     }
 }

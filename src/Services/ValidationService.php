@@ -1,4 +1,5 @@
 <?php
+
 namespace Ayimdomnic\Quicksite\Services;
 
 use Illuminate\Support\Facades\Config;
@@ -54,8 +55,10 @@ class ValidationService
             $result['errors'] = false;
         }
         $result['inputs'] = self::inputsArray($jsonInput);
+
         return $result;
     }
+
     /**
      * Json form validation.
      *
@@ -68,6 +71,7 @@ class ValidationService
     {
         return self::check($form, $module, true);
     }
+
     /**
      * ValidationService Errors.
      *
@@ -89,8 +93,10 @@ class ValidationService
         } else {
             $errorMessage = Session::get('errors');
         }
+
         return $errorMessage;
     }
+
     /**
      * Validation inputs.
      *
@@ -102,8 +108,10 @@ class ValidationService
         if (!$inputs) {
             return false;
         }
+
         return $inputs;
     }
+
     /**
      * Get input.
      *
@@ -121,8 +129,10 @@ class ValidationService
         } else {
             $input = Input::get($key);
         }
+
         return $input;
     }
+
     /**
      * Get the inputs as an array.
      *
@@ -144,8 +154,10 @@ class ValidationService
                 }
             }
         }
+
         return $inputs;
     }
+
     /**
      * Get the value last attempted in valuation.
      *
@@ -159,6 +171,7 @@ class ValidationService
         if (!$inputs) {
             return '';
         }
+
         return $inputs[$key];
     }
 }

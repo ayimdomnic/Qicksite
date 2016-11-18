@@ -2,7 +2,6 @@
 
 namespace Ayimdomnic\Quicksite\Services;
 
-
 use CryptoService as CryptoServiceForFiles;
 use Exception;
 use Illuminate\Support\Facades\Config;
@@ -24,8 +23,10 @@ class FileService
         $sections = explode(DIRECTORY_SEPARATOR, $file);
         $fileName = $sections[count($sections) - 1];
         $class = str_replace('.php', '', $fileName);
+
         return $class;
     }
+
     /**
      * Saves File.
      *
@@ -49,11 +50,13 @@ class FileService
             }
         }
         Storage::disk(Config::get('quicksite.storage-location', 'local'))->put($directory.$newFileName.'.'.$extension, file_get_contents($fileName));
+
         return [
             'original' => basename($fileName),
             'name'     => $directory.$newFileName.'.'.$extension,
         ];
     }
+
     /**
      * Saves File.
      *
@@ -89,11 +92,13 @@ class FileService
             }
         }
         Storage::disk(Config::get('quicksite.storage-location', 'local'))->put($directory.$newFileName.'.'.$extension, File::get($file));
+
         return [
             'original' => $originalName ?: $file->getFilename().'.'.$extension,
             'name'     => $directory.$newFileName.'.'.$extension,
         ];
     }
+
     /**
      * Provide a URL for the file as a public asset.
      *
@@ -105,6 +110,7 @@ class FileService
     {
         return '/public-asset/'.CryptoServiceForFiles::url_encode($fileName);
     }
+
     /**
      * Provides a URL for the file as a download.
      *
@@ -117,6 +123,7 @@ class FileService
     {
         return '/public-download/'.CryptoServiceForFiles::url_encode($fileName).'/'.CryptoServiceForFiles::url_encode($realFileName);
     }
+
     /**
      * Provide a URL for the file as a public preview.
      *

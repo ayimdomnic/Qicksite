@@ -21,6 +21,7 @@ class ModuleService
                 }
             }
         }
+
         return $menu;
     }
 
@@ -29,7 +30,7 @@ class ModuleService
         Config::get('quicksite.packages');
         $modules = glob($modulePath.'*');
         $menu = '';
-        
+
         foreach ($modules as $module) {
             if (is_dir($module)) {
                 $module = lcfirst(str_replace($modulePath, '', $module));
@@ -38,6 +39,7 @@ class ModuleService
                 }
             }
         }
+
         return $menu;
     }
 }

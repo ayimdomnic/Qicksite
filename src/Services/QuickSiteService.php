@@ -1,5 +1,12 @@
 <?php
+
 namespace Ayimdomnic\Quicksite\Services;
+
+use Ayimdomnic\Quicksite\Facades\CryptoServiceFacade;
+use Ayimdomnic\Quicksite\Repositories\LinkRepository;
+use Ayimdomnic\Quicksite\Repositories\MenuRepository;
+use Ayimdomnic\Quicksite\Repositories\PageRepository;
+use Ayimdomnic\Quicksite\Repositories\WidgetRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -7,17 +14,14 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
-use Ayimdomnic\Quicksite\Facades\CryptoServiceFacade;
-use Ayimdomnic\Quicksite\Repositories\LinkRepository;
-use Ayimdomnic\Quicksite\Repositories\MenuRepository;
-use Ayimdomnic\Quicksite\Repositories\PageRepository;
-use Ayimdomnic\Quicksite\Repositories\WidgetRepository;
-class quicksiteService
+
+class QuickSiteService
 {
     public function __construct()
     {
         $this->imageRepo = App::make('Ayimdomnic\Quicksite\Repositories\ImageRepository');
     }
+
     /**
      * Generates a notification for the app.
      *
@@ -34,6 +38,7 @@ class quicksiteService
         Session::flash('notification', $string);
         Session::flash('notificationType', 'alert-'.$type);
     }
+
     /**
      * Get a module's asset.
      *
@@ -48,8 +53,10 @@ class quicksiteService
         if (!$fullURL) {
             return base_path(__DIR__.'/../Assets/'.$path);
         }
+
         return url('quicksite/asset/'.CryptoServiceFacade::url_encode($path).'/'.CryptoServiceFacade::url_encode($contentType));
     }
+
     /**
      * Module Assets.
      *
@@ -62,8 +69,10 @@ class quicksiteService
     public function moduleAsset($module, $path, $contentType = 'null')
     {
         $path = base_path(Config::get('quicksite.module-directory').'/'.ucfirst($module).'/Assets/'.$path);
+
         return url('quicksite/asset/'.CryptoServiceFacade::url_encode($path).'/'.CryptoServiceFacade::url_encode($contentType).'/?isModule=true');
     }
+
     /**
      * Module Config.
      *
@@ -76,8 +85,10 @@ class quicksiteService
     public function moduleConfig($module, $path)
     {
         $configArray = @include base_path(Config::get('quicksite.module-directory').'/'.ucfirst($module).'/config.php');
+
         return self::assignArrayByPath($configArray, $path);
     }
+
     /**
      * Creates a breadcrumb trail.
      *
@@ -97,8 +108,10 @@ class quicksiteService
                 $trail .= '<li>'.ucfirst($location).'</li>';
             }
         }
+
         return $trail;
     }
+
     /**
      * Get Module Config.
      *
@@ -111,8 +124,10 @@ class quicksiteService
         $splitKey = explode('.', $key);
         $moduleConfig = include __DIR__.'/../PublishedAssets/Config/'.$splitKey[0].'.php';
         $strippedKey = preg_replace('/'.$splitKey[1].'./', '', preg_replace('/'.$splitKey[0].'./', '', $key, 1), 1);
+
         return $moduleConfig[$strippedKey];
     }
+
     /**
      * Assign a value to the path.
      *
@@ -127,8 +142,10 @@ class quicksiteService
         while ($key = array_shift($keys)) {
             $arr = &$arr[$key];
         }
+
         return $arr;
     }
+
     /**
      * Convert a string to a URL.
      *
@@ -140,6 +157,7 @@ class quicksiteService
     {
         return preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', strtolower($string)));
     }
+
     /**
      * Get a widget.
      *
@@ -159,6 +177,7 @@ class quicksiteService
             return $widget->content;
         }
     }
+
     /**
      * Get images.
      *
@@ -178,8 +197,10 @@ class quicksiteService
         } else {
             $images = array_merge($images, $this->imageRepo->getImagesByTag($tag)->get()->toArray());
         }
+
         return $images;
     }
+
     /**
      * Add these views to the packages.
      *
@@ -195,8 +216,10 @@ class quicksiteService
         foreach ($files as $view) {
             array_push($packageViews, $view);
         }
+
         return Config::set('quicksite.package-menus', $packageViews);
     }
+
     /**
      * quicksite package Menus.
      *
@@ -210,6 +233,7 @@ class quicksiteService
             include $view;
         }
     }
+
     /**
      * Get a view.
      *
@@ -235,7 +259,7 @@ class quicksiteService
                 if ($page) {
                     if (config('app.locale') == config('quicksite.default-language', $this->config('quicksite.default-language'))) {
                         $response .= '<a href="'.URL::to('page/'.$page->url)."\">$link->name</a>";
-                    } else if (config('app.locale') != config('quicksite.default-language', $this->config('quicksite.default-language'))) {
+                    } elseif (config('app.locale') != config('quicksite.default-language', $this->config('quicksite.default-language'))) {
                         if ($page->translation(config('app.locale'))) {
                             $response .= '<a href="'.URL::to('page/'.$page->translation(config('app.locale'))->data->url)."\">$link->name</a>";
                         }
@@ -249,8 +273,10 @@ class quicksiteService
         if (Gate::allows('quicksite', Auth::user())) {
             $response .= '<a href="'.url('quicksite/menus/'.$menu->id.'/edit').'" style="margin-left: 8px;" class="btn btn-xs btn-default"><span class="fa fa-pencil"></span> Edit</a>';
         }
+
         return $response;
     }
+
     public function defaultModules()
     {
         return [
@@ -264,6 +290,7 @@ class quicksiteService
             'faqs',
         ];
     }
+
     /**
      * Edit button.
      *
@@ -281,6 +308,7 @@ class quicksiteService
                 return '<a href="'.url('quicksite/'.$type).'" class="btn btn-xs btn-default pull-right"><span class="fa fa-pencil"></span> Edit</a>';
             }
         }
+
         return '';
     }
 }
