@@ -2,10 +2,10 @@
 
 namespace Yab\Quarx\Console;
 
-use Artisan;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\UserService;
+use Artisan;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Config;
@@ -41,12 +41,12 @@ class Setup extends Command
         if ($cssReady) {
             Artisan::call('vendor:publish', [
                 '--provider' => 'Yab\Quarx\QuarxProvider',
-                '--force' => true,
+                '--force'    => true,
             ]);
 
             Artisan::call('vendor:publish', [
                 '--provider' => 'Yab\Laracogs\LaracogsProvider',
-                '--force' => true,
+                '--force'    => true,
             ]);
 
             $fileSystem = new Filesystem();
@@ -93,7 +93,7 @@ class Setup extends Command
 
             $this->info('Publishing theme');
             Artisan::call('theme:publish', [
-                'name' => 'default',
+                'name'     => 'default',
                 '--forced' => true,
             ]);
 
@@ -109,11 +109,11 @@ class Setup extends Command
             $this->info('Setting roles');
             if (!Role::where('name', 'member')->first()) {
                 Role::create([
-                    'name' => 'member',
+                    'name'  => 'member',
                     'label' => 'Member',
                 ]);
                 Role::create([
-                    'name' => 'admin',
+                    'name'  => 'admin',
                     'label' => 'Admin',
                 ]);
             }
@@ -123,8 +123,8 @@ class Setup extends Command
 
             if (!User::where('name', 'admin')->first()) {
                 $user = User::create([
-                    'name' => 'Admin',
-                    'email' => 'admin@admin.com',
+                    'name'     => 'Admin',
+                    'email'    => 'admin@admin.com',
                     'password' => bcrypt('admin'),
                 ]);
             }

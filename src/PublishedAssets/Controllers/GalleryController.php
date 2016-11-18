@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Quarx;
 
-use Config;
 use App\Http\Controllers\Controller;
+use Config;
 use Yab\Quarx\Repositories\ImageRepository;
 
 class GalleryController extends Controller

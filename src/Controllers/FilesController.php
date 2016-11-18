@@ -2,19 +2,19 @@
 
 namespace Yab\Quarx\Controllers;
 
-use Quarx;
 use Config;
-use Storage;
+use CryptoService;
+use Illuminate\Http\Request;
+use Quarx;
 use Redirect;
 use Response;
-use CryptoService;
+use Storage;
 use Yab\Quarx\Models\File;
-use Illuminate\Http\Request;
+use Yab\Quarx\Repositories\FileRepository;
 use Yab\Quarx\Requests\FileRequest;
 use Yab\Quarx\Services\FileService;
-use Yab\Quarx\Services\ValidationService;
-use Yab\Quarx\Repositories\FileRepository;
 use Yab\Quarx\Services\QuarxResponseService;
+use Yab\Quarx\Services\ValidationService;
 
 class FilesController extends QuarxController
 {

@@ -2,12 +2,12 @@
 
 namespace Yab\Quarx\Repositories;
 
-use Quarx;
 use Config;
 use CryptoService;
+use Illuminate\Support\Facades\Schema;
+use Quarx;
 use Yab\Quarx\Models\Image;
 use Yab\Quarx\Services\FileService;
-use Illuminate\Support\Facades\Schema;
 
 class ImageRepository
 {

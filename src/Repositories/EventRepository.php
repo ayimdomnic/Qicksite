@@ -3,10 +3,9 @@
 namespace Yab\Quarx\Repositories;
 
 use Carbon\Carbon;
-use Yab\Quarx\Models\Event;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
-use Yab\Quarx\Repositories\TranslationRepository;
+use Yab\Quarx\Models\Event;
 
 class EventRepository
 {
@@ -115,7 +114,7 @@ class EventRepository
      */
     public function update($event, $payload)
     {
-        if (! empty($payload['lang']) && $payload['lang'] !== config('quarx.default-language', 'en')) {
+        if (!empty($payload['lang']) && $payload['lang'] !== config('quarx.default-language', 'en')) {
             return $this->translationRepo->createOrUpdate($event->id, 'Yab\Quarx\Models\Event', $payload);
         } else {
             $payload['is_published'] = (isset($payload['is_published'])) ? (bool) $payload['is_published'] : 0;

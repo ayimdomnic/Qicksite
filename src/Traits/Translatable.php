@@ -21,8 +21,6 @@ trait Translatable
         if ($translation) {
             return json_decode($translation->entity_data);
         }
-
-        return null;
     }
 
     public function getTranslationsAttribute()

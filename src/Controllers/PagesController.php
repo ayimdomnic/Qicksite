@@ -2,14 +2,14 @@
 
 namespace Yab\Quarx\Controllers;
 
-use URL;
+use Illuminate\Http\Request;
 use Quarx;
 use Response;
+use URL;
 use Yab\Quarx\Models\Page;
-use Illuminate\Http\Request;
+use Yab\Quarx\Repositories\PageRepository;
 use Yab\Quarx\Requests\PagesRequest;
 use Yab\Quarx\Services\ValidationService;
-use Yab\Quarx\Repositories\PageRepository;
 
 class PagesController extends QuarxController
 {

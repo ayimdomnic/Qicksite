@@ -2,13 +2,13 @@
 
 namespace Yab\Quarx\Controllers;
 
-use Quarx;
-use Yab\Quarx\Models\Link;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
+use Quarx;
+use Yab\Quarx\Models\Link;
+use Yab\Quarx\Repositories\LinkRepository;
 use Yab\Quarx\Requests\LinksRequest;
 use Yab\Quarx\Services\ValidationService;
-use Yab\Quarx\Repositories\LinkRepository;
 
 class LinksController extends QuarxController
 {

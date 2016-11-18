@@ -3,10 +3,10 @@
 namespace Yab\Quarx\Models;
 
 use Config;
-use Storage;
 use FileService;
 use Illuminate\Database\Eloquent\Model;
 use Intervention\Image\ImageManagerStatic as InterventionImage;
+use Storage;
 
 class Image extends Model
 {
@@ -19,7 +19,7 @@ class Image extends Model
     protected $appends = [
         'url',
         'js_url',
-        'data_url'
+        'data_url',
     ];
 
     public static $rules = [

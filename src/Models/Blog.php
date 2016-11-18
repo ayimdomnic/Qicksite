@@ -20,6 +20,6 @@ class Blog extends QuarxModel
     ];
 
     protected $appends = [
-        'translations'
+        'translations',
     ];
 }

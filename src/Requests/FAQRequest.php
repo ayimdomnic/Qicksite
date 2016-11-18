@@ -4,8 +4,8 @@ namespace Yab\Quarx\Requests;
 
 use Auth;
 use Gate;
-use Yab\Quarx\Models\FAQ;
 use Illuminate\Foundation\Http\FormRequest;
+use Yab\Quarx\Models\FAQ;
 
 class FAQRequest extends FormRequest
 {

@@ -15,7 +15,7 @@ return [
     */
 
     'frontend-namespace' => '\App\Http\Controllers\Quarx',
-    'frontend-theme' => 'default',
+    'frontend-theme'     => 'default',
 
     /*
      * --------------------------------------------------------------------------
@@ -23,8 +23,8 @@ return [
      * --------------------------------------------------------------------------
     */
 
-    'load-modules'     => true,
-    'module-directory' => 'quarx/modules',
+    'load-modules'        => true,
+    'module-directory'    => 'quarx/modules',
     'active-core-modules' => [
         'blog',
         'menus',
@@ -54,7 +54,7 @@ return [
      * --------------------------------------------------------------------------
     */
 
-    'storage-location' => 'local', // s3, local
+    'storage-location'     => 'local', // s3, local
     'max-file-upload-size' => 6291456, // 6MB
 
     /*
@@ -63,10 +63,10 @@ return [
      * --------------------------------------------------------------------------
     */
 
-    'backend-title' => 'Quarx',
-    'backend-theme' => 'united', // cosmo, cyborg, flatly, lumen, paper, sandstone, simplex, united, yeti
+    'backend-title'          => 'Quarx',
+    'backend-theme'          => 'united', // cosmo, cyborg, flatly, lumen, paper, sandstone, simplex, united, yeti
     'registration-available' => false,
-    'pagination' => 25,
+    'pagination'             => 25,
 
     /*
      * --------------------------------------------------------------------------

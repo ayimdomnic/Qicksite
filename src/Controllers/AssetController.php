@@ -3,15 +3,15 @@
 namespace Yab\Quarx\Controllers;
 
 use App;
-use Image;
-use Quarx;
 use Exception;
-use SplFileInfo;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
+use Image;
+use Quarx;
+use SplFileInfo;
 use Yab\Quarx\Facades\CryptoServiceFacade;
 
 class AssetController extends QuarxController
@@ -20,7 +20,7 @@ class AssetController extends QuarxController
 
     public function __construct()
     {
-         $this->mimeTypes = require __DIR__.'/../Config/mime.php';
+        $this->mimeTypes = require __DIR__.'/../Config/mime.php';
     }
 
     /**

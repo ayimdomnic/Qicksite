@@ -2,12 +2,12 @@
 
 namespace Yab\Quarx\Controllers;
 
-use Quarx;
-use Yab\Quarx\Models\Archive;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
+use Quarx;
+use Yab\Quarx\Models\Archive;
 
-class QuarxFeatureController extends QuarxController
+class QuicksiteFeatureController extends QuarxController
 {
     public function rollback($entity, $id)
     {
@@ -52,10 +52,11 @@ class QuarxFeatureController extends QuarxController
     }
 
     /**
-     * Preview content
+     * Preview content.
      *
-     * @param  string $entity
-     * @param  int $id
+     * @param string $entity
+     * @param int    $id
+     *
      * @return Response
      */
     public function preview($entity, $id)
@@ -76,7 +77,7 @@ class QuarxFeatureController extends QuarxController
         if (request('lang') != config('quarx.default-language', Quarx::config('quarx.default-language'))) {
             if ($modelInstance->translation(request('lang'))) {
                 $data = [
-                    $entity => $modelInstance->translation(request('lang'))->data
+                    $entity => $modelInstance->translation(request('lang'))->data,
                 ];
             }
         }

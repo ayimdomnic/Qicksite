@@ -4,8 +4,8 @@ namespace Ayimdomnic\Quicksite\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Schema;
 
 class ApiController extends QuicksiteController
 {
@@ -14,7 +14,7 @@ class ApiController extends QuicksiteController
     public function __construct(Request $request)
     {
         $this->modelName = str_singular($request->segment(3));
-        if (! empty($this->modelName)) {
+        if (!empty($this->modelName)) {
             $this->model = app('Ayimdomnic\Quicksite\Models\\'.ucfirst($this->modelName));
         }
     }
@@ -50,8 +50,8 @@ class ApiController extends QuicksiteController
         }
 
         return [
-            'term' => $input['term'],
-            'result' => $query->paginate(Config::get('quicksite.pagination', 25))
+            'term'   => $input['term'],
+            'result' => $query->paginate(Config::get('quicksite.pagination', 25)),
         ];
     }
 }

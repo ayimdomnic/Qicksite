@@ -20,7 +20,7 @@ class Translation extends Model
 
         $attributes = (array) json_decode($this->entity_data);
         $object->attributes = array_merge($attributes, [
-            'id' => $this->entity_id
+            'id' => $this->entity_id,
         ]);
 
         return $object;

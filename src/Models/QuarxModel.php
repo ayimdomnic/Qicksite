@@ -2,16 +2,16 @@
 
 namespace Yab\Quarx\Models;
 
-use Log;
-use Yab\Quarx\Models\Translation;
 use Illuminate\Database\Eloquent\Model;
+use Log;
 
 class QuarxModel extends Model
 {
     /**
-     * After the item is saved to the database
+     * After the item is saved to the database.
      *
-     * @param  Object $payload
+     * @param object $payload
+     *
      * @return void
      */
     public function afterSaved($payload)
@@ -33,9 +33,10 @@ class QuarxModel extends Model
     }
 
     /**
-     * When the item is being deleted
+     * When the item is being deleted.
      *
-     * @param  Object $payload
+     * @param object $payload
+     *
      * @return void
      */
     public function beingDeleted($payload)
