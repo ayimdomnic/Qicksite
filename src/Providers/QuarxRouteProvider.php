@@ -5,7 +5,7 @@ namespace Ayimdomnic\QuickSite\Providers;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 
-class quicksiteRouteProvider extends ServiceProvider
+class QuarxRouteProvider extends ServiceProvider
 {
     /**
      * This namespace is applied to the controller routes in your routes file.

@@ -2,13 +2,13 @@
 
 namespace Ayimdomnic\QuickSite\Controllers;
 
-use Illuminate\Http\Request;
-use quicksite;
-use URL;
 use Ayimdomnic\QuickSite\Models\Blog;
 use Ayimdomnic\QuickSite\Repositories\BlogRepository;
 use Ayimdomnic\QuickSite\Requests\BlogRequest;
 use Ayimdomnic\QuickSite\Services\ValidationService;
+use Illuminate\Http\Request;
+use quicksite;
+use URL;
 
 class BlogController extends quicksiteController
 {

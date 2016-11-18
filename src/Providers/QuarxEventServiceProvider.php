@@ -4,7 +4,7 @@ namespace Ayimdomnic\QuickSite\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
-class quicksiteEventServiceProvider extends ServiceProvider
+class QuarxEventServiceProvider extends ServiceProvider
 {
     /**
      * The event listener mappings for the application.

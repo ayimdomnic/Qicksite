@@ -2,13 +2,13 @@
 
 namespace Ayimdomnic\QuickSite\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
-use quicksite;
 use Ayimdomnic\QuickSite\Models\Link;
 use Ayimdomnic\QuickSite\Repositories\LinkRepository;
 use Ayimdomnic\QuickSite\Requests\LinksRequest;
 use Ayimdomnic\QuickSite\Services\ValidationService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
+use quicksite;
 
 class LinksController extends quicksiteController
 {

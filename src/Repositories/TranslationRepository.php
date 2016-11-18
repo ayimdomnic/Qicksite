@@ -2,8 +2,8 @@
 
 namespace Ayimdomnic\QuickSite\Repositories;
 
-use Carbon\Carbon;
 use Ayimdomnic\QuickSite\Models\Translation;
+use Carbon\Carbon;
 
 class TranslationRepository
 {

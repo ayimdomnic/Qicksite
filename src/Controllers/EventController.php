@@ -2,13 +2,13 @@
 
 namespace Ayimdomnic\QuickSite\Controllers;
 
-use Illuminate\Http\Request;
-use quicksite;
-use URL;
 use Ayimdomnic\QuickSite\Models\Event;
 use Ayimdomnic\QuickSite\Repositories\EventRepository;
 use Ayimdomnic\QuickSite\Requests\EventRequest;
 use Ayimdomnic\QuickSite\Services\ValidationService;
+use Illuminate\Http\Request;
+use quicksite;
+use URL;
 
 class EventController extends quicksiteController
 {

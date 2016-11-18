@@ -4,7 +4,7 @@ namespace Ayimdomnic\QuickSite\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class quicksiteServiceFacade extends Facade
+class QuarxServiceFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {

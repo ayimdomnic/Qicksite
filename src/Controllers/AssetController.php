@@ -3,6 +3,7 @@
 namespace Ayimdomnic\QuickSite\Controllers;
 
 use App;
+use Ayimdomnic\QuickSite\Facades\CryptoServiceFacade;
 use Exception;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Config;
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Storage;
 use Image;
 use quicksite;
 use SplFileInfo;
-use Ayimdomnic\QuickSite\Facades\CryptoServiceFacade;
 
 class AssetController extends quicksiteController
 {

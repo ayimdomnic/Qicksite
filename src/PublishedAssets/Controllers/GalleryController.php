@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\quicksite;
 
 use App\Http\Controllers\Controller;
-use Config;
 use Ayimdomnic\QuickSite\Repositories\ImageRepository;
+use Config;
 
 class GalleryController extends Controller
 {

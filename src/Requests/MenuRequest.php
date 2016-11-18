@@ -3,9 +3,9 @@
 namespace Ayimdomnic\QuickSite\Requests;
 
 use Auth;
+use Ayimdomnic\QuickSite\Models\Menu;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
-use Ayimdomnic\QuickSite\Models\Menu;
 
 class MenuRequest extends FormRequest
 {

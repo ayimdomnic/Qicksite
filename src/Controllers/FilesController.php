@@ -2,6 +2,12 @@
 
 namespace Ayimdomnic\QuickSite\Controllers;
 
+use Ayimdomnic\QuickSite\Models\File;
+use Ayimdomnic\QuickSite\Repositories\FileRepository;
+use Ayimdomnic\QuickSite\Requests\FileRequest;
+use Ayimdomnic\QuickSite\Services\FileService;
+use Ayimdomnic\QuickSite\Services\quicksiteResponseService;
+use Ayimdomnic\QuickSite\Services\ValidationService;
 use Config;
 use CryptoService;
 use Illuminate\Http\Request;
@@ -9,12 +15,6 @@ use quicksite;
 use Redirect;
 use Response;
 use Storage;
-use Ayimdomnic\QuickSite\Models\File;
-use Ayimdomnic\QuickSite\Repositories\FileRepository;
-use Ayimdomnic\QuickSite\Requests\FileRequest;
-use Ayimdomnic\QuickSite\Services\FileService;
-use Ayimdomnic\QuickSite\Services\quicksiteResponseService;
-use Ayimdomnic\QuickSite\Services\ValidationService;
 
 class FilesController extends quicksiteController
 {

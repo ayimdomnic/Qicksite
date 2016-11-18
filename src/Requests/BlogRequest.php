@@ -3,9 +3,9 @@
 namespace Ayimdomnic\QuickSite\Requests;
 
 use Auth;
+use Ayimdomnic\QuickSite\Models\Blog;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
-use Ayimdomnic\QuickSite\Models\Blog;
 
 class BlogRequest extends FormRequest
 {

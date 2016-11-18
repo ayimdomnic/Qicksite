@@ -2,12 +2,12 @@
 
 namespace Ayimdomnic\QuickSite\Repositories;
 
+use Ayimdomnic\QuickSite\Models\Image;
+use Ayimdomnic\QuickSite\Services\FileService;
 use Config;
 use CryptoService;
 use Illuminate\Support\Facades\Schema;
 use quicksite;
-use Ayimdomnic\QuickSite\Models\Image;
-use Ayimdomnic\QuickSite\Services\FileService;
 
 class ImageRepository
 {

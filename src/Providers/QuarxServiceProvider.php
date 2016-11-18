@@ -3,16 +3,16 @@
 namespace Ayimdomnic\QuickSite\Providers;
 
 use App;
-use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\ServiceProvider;
 use Ayimdomnic\QuickSite\Services\BlogService;
 use Ayimdomnic\QuickSite\Services\CryptoService;
 use Ayimdomnic\QuickSite\Services\EventService;
 use Ayimdomnic\QuickSite\Services\ModuleService;
 use Ayimdomnic\QuickSite\Services\PageService;
 use Ayimdomnic\QuickSite\Services\quicksiteService;
+use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\ServiceProvider;
 
-class quicksiteServiceProvider extends ServiceProvider
+class QuarxServiceProvider extends ServiceProvider
 {
     /**
      * Register the services.

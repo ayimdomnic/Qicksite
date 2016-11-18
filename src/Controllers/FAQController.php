@@ -2,13 +2,13 @@
 
 namespace Ayimdomnic\QuickSite\Controllers;
 
-use Illuminate\Http\Request;
-use quicksite;
-use URL;
 use Ayimdomnic\QuickSite\Models\FAQ;
 use Ayimdomnic\QuickSite\Repositories\FAQRepository;
 use Ayimdomnic\QuickSite\Requests\FAQRequest;
 use Ayimdomnic\QuickSite\Services\ValidationService;
+use Illuminate\Http\Request;
+use quicksite;
+use URL;
 
 class FAQController extends quicksiteController
 {

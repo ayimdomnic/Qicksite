@@ -2,11 +2,11 @@
 
 namespace Ayimdomnic\QuickSite\Repositories;
 
+use Ayimdomnic\QuickSite\Models\Blog;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use quicksite;
-use Ayimdomnic\QuickSite\Models\Blog;
 
 class BlogRepository
 {
