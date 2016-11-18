@@ -1,0 +1,13 @@
+{
+    "name": "ayimdomnic/quicksite",
+    "description": "A CMS to assit you set up; events, blogs, pages,images etc on any laravel app",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "odhiambo dormnic",
+            "email": "ayimdomnic@gmail.com"
+        }
+    ],
+    "require": {}
+}
