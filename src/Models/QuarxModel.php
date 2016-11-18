@@ -1,11 +1,11 @@
 <?php
 
-namespace Yab\Quarx\Models;
+namespace Ayimdomnic\QuickSite\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Log;
 
-class QuarxModel extends Model
+class quicksiteModel extends Model
 {
     /**
      * After the item is saved to the database.
@@ -47,7 +47,7 @@ class QuarxModel extends Model
         Translation::where('entity_id', $id)->where('entity_type', $type)->delete();
         Archive::where('entity_id', $id)->where('entity_type', $type)->delete();
 
-        Archive::where('entity_type', 'Yab\Quarx\Models\Translation')
+        Archive::where('entity_type', 'Ayimdomnic\QuickSite\Models\Translation')
             ->where('entity_data->entity_id', $id)
             ->where('entity_data->entity_type', $type)->delete();
     }

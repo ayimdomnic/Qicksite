@@ -1,11 +1,11 @@
 <?php
 
-namespace Yab\Quarx\Providers;
+namespace Ayimdomnic\QuickSite\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 
-class QuarxRouteProvider extends ServiceProvider
+class quicksiteRouteProvider extends ServiceProvider
 {
     /**
      * This namespace is applied to the controller routes in your routes file.
@@ -14,7 +14,7 @@ class QuarxRouteProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Yab\Quarx\Controllers';
+    protected $namespace = 'Ayimdomnic\QuickSite\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.

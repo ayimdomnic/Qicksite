@@ -1,9 +1,9 @@
 <?php
 
-namespace Yab\Quarx\Repositories;
+namespace Ayimdomnic\QuickSite\Repositories;
 
 use Illuminate\Support\Facades\Schema;
-use Yab\Quarx\Models\Menu;
+use Ayimdomnic\QuickSite\Models\Menu;
 
 class MenuRepository
 {

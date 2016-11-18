@@ -1,9 +1,9 @@
 <?php
 
-namespace Yab\Quarx\Repositories;
+namespace Ayimdomnic\QuickSite\Repositories;
 
 use Carbon\Carbon;
-use Yab\Quarx\Models\Translation;
+use Ayimdomnic\QuickSite\Models\Translation;
 
 class TranslationRepository
 {

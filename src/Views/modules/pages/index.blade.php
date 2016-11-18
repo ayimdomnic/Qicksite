@@ -1,4 +1,4 @@
-@extends('quarx::layouts.dashboard')
+@extends('quicksite::layouts.dashboard')
 
 @section('content')
 
@@ -21,9 +21,9 @@
     </div>
 
     <div class="row">
-        <a class="btn btn-primary pull-right" href="{!! route('quarx.pages.create') !!}">Add New</a>
+        <a class="btn btn-primary pull-right" href="{!! route('quicksite.pages.create') !!}">Add New</a>
         <div class="raw-m-hide pull-right">
-            {!! Form::open(['url' => 'quarx/pages/search']) !!}
+            {!! Form::open(['url' => 'quicksite/pages/search']) !!}
             <input class="form-control header-input pull-right raw-margin-right-24" name="term" placeholder="Search">
             {!! Form::close() !!}
         </div>
@@ -49,7 +49,7 @@
 
                 @foreach($pages as $page)
                     <tr>
-                        <td><a href="{!! route('quarx.pages.edit', [$page->id]) !!}">{!! $page->title !!}</a></td>
+                        <td><a href="{!! route('quicksite.pages.edit', [$page->id]) !!}">{!! $page->title !!}</a></td>
                         <td class="raw-m-hide">{!! $page->url !!}</td>
                         <td class="raw-m-hide text-center">
                             @if ($page->is_published)
@@ -59,12 +59,12 @@
                             @endif
                         </td>
                         <td class="text-right">
-                            <form method="post" action="{!! url('quarx/pages/'.$page->id) !!}">
+                            <form method="post" action="{!! url('quicksite/pages/'.$page->id) !!}">
                                 {!! csrf_field() !!}
                                 {!! method_field('DELETE') !!}
                                 <button class="delete-btn btn btn-xs btn-danger pull-right" type="submit"><i class="fa fa-trash"></i> Delete</button>
                             </form>
-                            <a class="btn btn-xs btn-default pull-right raw-margin-right-8" href="{!! route('quarx.pages.edit', [$page->id]) !!}"><i class="fa fa-pencil"></i> Edit</a>
+                            <a class="btn btn-xs btn-default pull-right raw-margin-right-8" href="{!! route('quicksite.pages.edit', [$page->id]) !!}"><i class="fa fa-pencil"></i> Edit</a>
                         </td>
                     </tr>
                 @endforeach

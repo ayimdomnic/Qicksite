@@ -1,4 +1,4 @@
-@extends('quarx::layouts.dashboard')
+@extends('quicksite::layouts.dashboard')
 
 @section('content')
 
@@ -74,5 +74,5 @@
         var options = {};
     </script>
     {!! Minify::javascript('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js') !!}
-    {!! Minify::javascript(Quarx::asset('js/dashboard-chart.js')) !!}
+    {!! Minify::javascript(quicksite::asset('js/dashboard-chart.js')) !!}
 @stop

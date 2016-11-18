@@ -2,11 +2,11 @@
 
     /*
     |--------------------------------------------------------------------------
-    | Quarx Routes
+    | quicksite Routes
     |--------------------------------------------------------------------------
     */
 
-    Route::group(['namespace' => 'Quarx'], function () {
+    Route::group(['namespace' => 'quicksite'], function () {
         Route::get('', 'PagesController@home');
         Route::get('page', 'PagesController@all');
         Route::get('page/{url}', 'PagesController@show');

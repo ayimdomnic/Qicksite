@@ -1,4 +1,4 @@
-@extends('quarx-frontend::layout.master')
+@extends('quicksite-frontend::layout.master')
 
 @if (isset($page))
     @section('seoDescription') {{ $page->seo_description }} @endsection
@@ -20,8 +20,8 @@
             <div class="col-md-4">
                 <div class="well">
                     <h3>Basics</h3>
-                    <p>In order to add content to this page login to Quarx and add a home page. Remember you can set up
-                        your own Auth for Quarx or run the artisan command: <code>php artisan quarx:setup</code> to get
+                    <p>In order to add content to this page login to quicksite and add a home page. Remember you can set up
+                        your own Auth for quicksite or run the artisan command: <code>php artisan quicksite:setup</code> to get
                         a prebuilt auth system.</p>
                     <p>Once you're all set up try building a menu with slug: main, and a widget with the slug: widget. You'll see the theme display them right away!</p>
                 </div>
@@ -36,7 +36,7 @@
                     <h3>Custom Themes</h3>
                     <p>You can easily generate a theme template via the command: <code>php artisan theme:generate {name}</code> </p>
                     <p>The theme's files will be placed in the following directory: <code>resources/themes/{name}</code></p>
-                    <p>To include files either use the blade code: <code>&#64;theme</code> or include a file with the <code>quarx-frontend::</code> namespace.</p>
+                    <p>To include files either use the blade code: <code>&#64;theme</code> or include a file with the <code>quicksite-frontend::</code> namespace.</p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -52,7 +52,7 @@
 </div>
 @endsection
 
-@section('quarx')
+@section('quicksite')
     @if (isset($page))
         @edit('pages', $page->id)
     @endif

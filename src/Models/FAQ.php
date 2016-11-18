@@ -1,10 +1,10 @@
 <?php
 
-namespace Yab\Quarx\Models;
+namespace Ayimdomnic\QuickSite\Models;
 
-use Yab\Quarx\Traits\Translatable;
+use Ayimdomnic\QuickSite\Traits\Translatable;
 
-class FAQ extends QuarxModel
+class FAQ extends quicksiteModel
 {
     use Translatable;
 

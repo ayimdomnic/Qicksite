@@ -1,4 +1,4 @@
-@extends('quarx::layouts.dashboard')
+@extends('quicksite::layouts.dashboard')
 
 @section('content')
 

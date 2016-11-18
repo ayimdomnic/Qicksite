@@ -2,7 +2,7 @@
 
 /*
  * --------------------------------------------------------------------------
- * Quarx Config
+ * quicksite Config
  * --------------------------------------------------------------------------
 */
 
@@ -14,7 +14,7 @@ return [
      * --------------------------------------------------------------------------
     */
 
-    'frontend-namespace' => '\App\Http\Controllers\Quarx',
+    'frontend-namespace' => '\App\Http\Controllers\quicksite',
     'frontend-theme'     => 'default',
 
     /*
@@ -24,7 +24,7 @@ return [
     */
 
     'load-modules'        => true,
-    'module-directory'    => 'quarx/modules',
+    'module-directory'    => 'quicksite/modules',
     'active-core-modules' => [
         'blog',
         'menus',
@@ -63,7 +63,7 @@ return [
      * --------------------------------------------------------------------------
     */
 
-    'backend-title'          => 'Quarx',
+    'backend-title'          => 'quicksite',
     'backend-theme'          => 'united', // cosmo, cyborg, flatly, lumen, paper, sandstone, simplex, united, yeti
     'registration-available' => false,
     'pagination'             => 25,
@@ -74,8 +74,8 @@ return [
      * --------------------------------------------------------------------------
     */
 
-    'api-key'   => env('QUARX_API_KEY', 'apis-are-cool'),
-    'api-token' => env('QUARX_API_TOKEN', 'quarx-token'),
+    'api-key'   => env('quicksite_API_KEY', 'apis-are-cool'),
+    'api-token' => env('quicksite_API_TOKEN', 'quicksite-token'),
 
     /*
      * --------------------------------------------------------------------------

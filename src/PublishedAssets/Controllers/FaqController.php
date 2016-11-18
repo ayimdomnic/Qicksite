@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Quarx;
+namespace App\Http\Controllers\quicksite;
 
 use App\Http\Controllers\Controller;
-use Yab\Quarx\Repositories\FAQRepository;
+use Ayimdomnic\QuickSite\Repositories\FAQRepository;
 
 class FaqController extends Controller
 {
@@ -30,6 +30,6 @@ class FaqController extends Controller
             abort(404);
         }
 
-        return view('quarx-frontend::faqs.all')->with('faqs', $faqs);
+        return view('quicksite-frontend::faqs.all')->with('faqs', $faqs);
     }
 }

@@ -1,4 +1,4 @@
-@extends('quarx-frontend::layout.master')
+@extends('quicksite-frontend::layout.master')
 
 @section('content')
 
@@ -7,7 +7,7 @@
     <h1>Events</h1>
 
     @foreach($events as $event)
-        @if (config('app.locale') !== config('quarx.default-language'))
+        @if (config('app.locale') !== config('quicksite.default-language'))
             <a href="{!! url('events/event/'.$event->id) !!}">{{ $event->translationData(config('app.locale'))->title }}</a><br>
         @else
             <a href="{!! url('events/event/'.$event->id) !!}">{{ $event->title }}</a><br>
@@ -18,6 +18,6 @@
 
 @endsection
 
-@section('quarx')
+@section('quicksite')
     @edit('events')
 @endsection

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Quarx;
+namespace App\Http\Controllers\quicksite;
 
 use App\Http\Controllers\Controller;
-use Yab\Quarx\Repositories\BlogRepository;
+use Ayimdomnic\QuickSite\Repositories\BlogRepository;
 
 class BlogController extends Controller
 {
@@ -31,7 +31,7 @@ class BlogController extends Controller
             abort(404);
         }
 
-        return view('quarx-frontend::blog.all')
+        return view('quicksite-frontend::blog.all')
             ->with('tags', $tags)
             ->with('blogs', $blogs);
     }
@@ -52,7 +52,7 @@ class BlogController extends Controller
             abort(404);
         }
 
-        return view('quarx-frontend::blog.all')
+        return view('quicksite-frontend::blog.all')
             ->with('tags', $tags)
             ->with('blogs', $blogs);
     }
@@ -72,6 +72,6 @@ class BlogController extends Controller
             abort(404);
         }
 
-        return view('quarx-frontend::blog.'.$blog->template)->with('blog', $blog);
+        return view('quicksite-frontend::blog.'.$blog->template)->with('blog', $blog);
     }
 }

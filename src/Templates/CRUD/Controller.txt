@@ -2,12 +2,12 @@
 
 namespace _namespace_controller_;
 
-use Quarx;
+use quicksite;
 use CryptoService;
 use Illuminate\Http\Request;
 use _app_namespace_Http\Controllers\Controller;
-use Quarx\Modules\_ucCamel_casePlural_\Services\_camel_case_Service;
-use Quarx\Modules\_ucCamel_casePlural_\Requests\_camel_case_Request;
+use quicksite\Modules\_ucCamel_casePlural_\Services\_camel_case_Service;
+use quicksite\Modules\_ucCamel_casePlural_\Requests\_camel_case_Request;
 
 class _ucCamel_casePlural_Controller extends Controller
 {
@@ -64,12 +64,12 @@ class _ucCamel_casePlural_Controller extends Controller
         $result = $this->service->create($request->except('_token'));
 
         if ($result) {
-            Quarx::notification('Successfully created', 'success');
-            return redirect('quarx/_lower_casePlural_/'.$result->id.'/edit');
+            quicksite::notification('Successfully created', 'success');
+            return redirect('quicksite/_lower_casePlural_/'.$result->id.'/edit');
         }
 
-        Quarx::notification('Failed to create', 'warning');
-        return redirect('quarx/_lower_casePlural_');
+        quicksite::notification('Failed to create', 'warning');
+        return redirect('quicksite/_lower_casePlural_');
     }
 
     /**
@@ -108,11 +108,11 @@ class _ucCamel_casePlural_Controller extends Controller
         $result = $this->service->update($id, $request->except(['_token', '_method']));
 
         if ($result) {
-            Quarx::notification('Successfully updated', 'success');
+            quicksite::notification('Successfully updated', 'success');
             return back();
         }
 
-        Quarx::notification('Failed to update', 'warning');
+        quicksite::notification('Failed to update', 'warning');
         return back();
     }
 
@@ -127,11 +127,11 @@ class _ucCamel_casePlural_Controller extends Controller
         $result = $this->service->destroy($id);
 
         if ($result) {
-            Quarx::notification('Successfully deleted', 'success');
-            return redirect('quarx/_lower_casePlural_');
+            quicksite::notification('Successfully deleted', 'success');
+            return redirect('quicksite/_lower_casePlural_');
         }
 
-        Quarx::notification('Failed to delete', 'warning');
-        return redirect('quarx/_lower_casePlural_');
+        quicksite::notification('Failed to delete', 'warning');
+        return redirect('quicksite/_lower_casePlural_');
     }
 }

@@ -1,4 +1,4 @@
-@extends('quarx::layouts.dashboard')
+@extends('quicksite::layouts.dashboard')
 
 @section('content')
 
@@ -21,9 +21,9 @@
     </div>
 
     <div class="row">
-        <a class="btn btn-primary pull-right" href="{!! route('quarx.files.create') !!}">Add New</a>
+        <a class="btn btn-primary pull-right" href="{!! route('quicksite.files.create') !!}">Add New</a>
         <div class="raw-m-hide pull-right raw-m-hide">
-            {!! Form::open(['url' => 'quarx/files/search']) !!}
+            {!! Form::open(['url' => 'quicksite/files/search']) !!}
             <input class="form-control header-input pull-right raw-margin-right-24" name="term" placeholder="Search">
             {!! Form::close() !!}
         </div>
@@ -49,16 +49,16 @@
                     <tr>
                         <td>
                             <a href="{!! FileService::fileAsDownload($file->name, $file->location) !!}"><span class="fa fa-download"></span></a>
-                            <a href="{!! route('quarx.files.edit', [$file->id]) !!}">{!! $file->name !!}</a>
+                            <a href="{!! route('quicksite.files.edit', [$file->id]) !!}">{!! $file->name !!}</a>
                         </td>
                         <td class="raw-m-hide text-center">@if ($file->is_published) <span class="fa fa-check"></span> @else <span class="fa fa-close"></span> @endif</td>
                         <td class="text-right">
-                            <form method="post" action="{!! url('quarx/files/'.$file->id) !!}">
+                            <form method="post" action="{!! url('quicksite/files/'.$file->id) !!}">
                                 {!! csrf_field() !!}
                                 {!! method_field('DELETE') !!}
                                 <button class="delete-btn btn btn-xs btn-danger pull-right" type="submit"><i class="fa fa-trash"></i> Delete</button>
                             </form>
-                            <a class="btn btn-xs btn-default pull-right raw-margin-right-8" href="{!! route('quarx.files.edit', [$file->id]) !!}"><i class="fa fa-pencil"></i> Edit</a>
+                            <a class="btn btn-xs btn-default pull-right raw-margin-right-8" href="{!! route('quicksite.files.edit', [$file->id]) !!}"><i class="fa fa-pencil"></i> Edit</a>
                         </td>
                     </tr>
                 @endforeach
@@ -76,10 +76,10 @@
 @section('javascript')
 
 @parent
-{!! Minify::javascript( Quarx::asset('js/bootstrap-tagsinput.min.js', 'application/javascript') ) !!}
-{!! Minify::javascript( Quarx::asset('dropzone/dropzone.js', 'application/javascript') ) !!}
-{!! Minify::javascript( Quarx::asset('js/files-module.js', 'application/javascript') ) !!}
-{!! Minify::javascript( Quarx::asset('js/dropzone-custom.js', 'application/javascript') ) !!}
+{!! Minify::javascript( quicksite::asset('js/bootstrap-tagsinput.min.js', 'application/javascript') ) !!}
+{!! Minify::javascript( quicksite::asset('dropzone/dropzone.js', 'application/javascript') ) !!}
+{!! Minify::javascript( quicksite::asset('js/files-module.js', 'application/javascript') ) !!}
+{!! Minify::javascript( quicksite::asset('js/dropzone-custom.js', 'application/javascript') ) !!}
 
 @stop
 

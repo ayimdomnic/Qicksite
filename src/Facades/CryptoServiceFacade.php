@@ -1,6 +1,6 @@
 <?php
 
-namespace Yab\Quarx\Facades;
+namespace Ayimdomnic\QuickSite\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

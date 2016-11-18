@@ -1,11 +1,11 @@
 <?php
 
-namespace Yab\Quarx\Requests;
+namespace Ayimdomnic\QuickSite\Requests;
 
 use Auth;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
-use Yab\Quarx\Models\Menu;
+use Ayimdomnic\QuickSite\Models\Menu;
 
 class MenuRequest extends FormRequest
 {
@@ -17,7 +17,7 @@ class MenuRequest extends FormRequest
     public function authorize()
     {
         if (env('APP_ENV') !== 'testing') {
-            return Gate::allows('quarx', Auth::user());
+            return Gate::allows('quicksite', Auth::user());
         }
 
         return true;

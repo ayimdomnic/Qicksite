@@ -1,16 +1,16 @@
 <?php
 
-namespace Yab\Quarx\Controllers;
+namespace Ayimdomnic\QuickSite\Controllers;
 
 use Illuminate\Http\Request;
-use Quarx;
-use Yab\Quarx\Models\Menu;
-use Yab\Quarx\Repositories\LinkRepository;
-use Yab\Quarx\Repositories\MenuRepository;
-use Yab\Quarx\Requests\MenuRequest;
-use Yab\Quarx\Services\ValidationService;
+use quicksite;
+use Ayimdomnic\QuickSite\Models\Menu;
+use Ayimdomnic\QuickSite\Repositories\LinkRepository;
+use Ayimdomnic\QuickSite\Repositories\MenuRepository;
+use Ayimdomnic\QuickSite\Requests\MenuRequest;
+use Ayimdomnic\QuickSite\Services\ValidationService;
 
-class MenuController extends QuarxController
+class MenuController extends quicksiteController
 {
     /** @var MenuRepository */
     private $menuRepository;
@@ -30,7 +30,7 @@ class MenuController extends QuarxController
     {
         $result = $this->menuRepository->paginated();
 
-        return view('quarx::modules.menus.index')
+        return view('quicksite::modules.menus.index')
             ->with('menus', $result)
             ->with('pagination', $result->render());
     }
@@ -48,7 +48,7 @@ class MenuController extends QuarxController
 
         $result = $this->menuRepository->search($input);
 
-        return view('quarx::modules.menus.index')
+        return view('quicksite::modules.menus.index')
             ->with('menus', $result[0]->get())
             ->with('pagination', $result[2])
             ->with('term', $result[1]);
@@ -61,7 +61,7 @@ class MenuController extends QuarxController
      */
     public function create()
     {
-        return view('quarx::modules.menus.create');
+        return view('quicksite::modules.menus.create');
     }
 
     /**
@@ -78,19 +78,19 @@ class MenuController extends QuarxController
 
             if (!$validation['errors']) {
                 $menu = $this->menuRepository->store($request->all());
-                Quarx::notification('Menu saved successfully.', 'success');
+                quicksite::notification('Menu saved successfully.', 'success');
 
                 if (!$menu) {
-                    Quarx::notification('Menu could not be saved.', 'danger');
+                    quicksite::notification('Menu could not be saved.', 'danger');
                 }
             } else {
                 return $validation['redirect'];
             }
         } catch (Exception $e) {
-            Quarx::notification($e->getMessage() ?: 'Menu could not be saved.', 'danger');
+            quicksite::notification($e->getMessage() ?: 'Menu could not be saved.', 'danger');
         }
 
-        return redirect(route('quarx.menus.edit', [$menu->id]));
+        return redirect(route('quicksite.menus.edit', [$menu->id]));
     }
 
     /**
@@ -105,14 +105,14 @@ class MenuController extends QuarxController
         $menu = $this->menuRepository->findMenuById($id);
 
         if (empty($menu)) {
-            Quarx::notification('Menu not found', 'warning');
+            quicksite::notification('Menu not found', 'warning');
 
-            return redirect(route('quarx.menus.index'));
+            return redirect(route('quicksite.menus.index'));
         }
 
         $links = $this->linkRepository->getLinksByMenu($menu->id);
 
-        return view('quarx::modules.menus.edit')->with('menu', $menu)->with('links', $links);
+        return view('quicksite::modules.menus.edit')->with('menu', $menu)->with('links', $links);
     }
 
     /**
@@ -129,22 +129,22 @@ class MenuController extends QuarxController
             $menu = $this->menuRepository->findMenuById($id);
 
             if (empty($menu)) {
-                Quarx::notification('Menu not found', 'warning');
+                quicksite::notification('Menu not found', 'warning');
 
-                return redirect(route('quarx.menus.index'));
+                return redirect(route('quicksite.menus.index'));
             }
 
             $menu = $this->menuRepository->update($menu, $request->all());
-            Quarx::notification('Menu updated successfully.', 'success');
+            quicksite::notification('Menu updated successfully.', 'success');
 
             if (!$menu) {
-                Quarx::notification('Menu could not be updated.', 'danger');
+                quicksite::notification('Menu could not be updated.', 'danger');
             }
         } catch (Exception $e) {
-            Quarx::notification($e->getMessage() ?: 'Menu could not be updated.', 'danger');
+            quicksite::notification($e->getMessage() ?: 'Menu could not be updated.', 'danger');
         }
 
-        return redirect(route('quarx.menus.edit', [$id]));
+        return redirect(route('quicksite.menus.edit', [$id]));
     }
 
     /**
@@ -159,15 +159,15 @@ class MenuController extends QuarxController
         $menu = $this->menuRepository->findMenuById($id);
 
         if (empty($menu)) {
-            Quarx::notification('Menu not found', 'warning');
+            quicksite::notification('Menu not found', 'warning');
 
-            return redirect(route('quarx.menus.index'));
+            return redirect(route('quicksite.menus.index'));
         }
 
         $menu->delete();
 
-        Quarx::notification('Menu deleted successfully.');
+        quicksite::notification('Menu deleted successfully.');
 
-        return redirect(route('quarx.menus.index'));
+        return redirect(route('quicksite.menus.index'));
     }
 }

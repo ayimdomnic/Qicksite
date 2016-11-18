@@ -1,4 +1,4 @@
-@extends('quarx-frontend::layout.master')
+@extends('quicksite-frontend::layout.master')
 
 @section('content')
 
@@ -17,6 +17,6 @@
 
 @endsection
 
-@section('quarx')
+@section('quicksite')
     @edit('events')
 @endsection

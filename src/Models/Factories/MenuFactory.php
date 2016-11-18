@@ -6,7 +6,7 @@
 |--------------------------------------------------------------------------
 */
 
-$factory->define(\Yab\Quarx\Models\Menu::class, function (Faker\Generator $faker) {
+$factory->define(\Ayimdomnic\QuickSite\Models\Menu::class, function (Faker\Generator $faker) {
     return [
 
         'id'         => 1,

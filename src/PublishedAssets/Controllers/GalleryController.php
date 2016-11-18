@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Quarx;
+namespace App\Http\Controllers\quicksite;
 
 use App\Http\Controllers\Controller;
 use Config;
-use Yab\Quarx\Repositories\ImageRepository;
+use Ayimdomnic\QuickSite\Repositories\ImageRepository;
 
 class GalleryController extends Controller
 {
@@ -29,7 +29,7 @@ class GalleryController extends Controller
             abort(404);
         }
 
-        return view('quarx-frontend::gallery.all')
+        return view('quicksite-frontend::gallery.all')
             ->with('tags', $tags)
             ->with('images', $images);
     }
@@ -43,14 +43,14 @@ class GalleryController extends Controller
      */
     public function show($tag)
     {
-        $images = $this->imageRepository->getImagesByTag($tag)->paginate(Config::get('quarx.pagination'));
+        $images = $this->imageRepository->getImagesByTag($tag)->paginate(Config::get('quicksite.pagination'));
         $tags = $this->imageRepository->allTags();
 
         if (empty($images)) {
             abort(404);
         }
 
-        return view('quarx-frontend::gallery.show')
+        return view('quicksite-frontend::gallery.show')
             ->with('tags', $tags)
             ->with('images', $images)
             ->with('title', $tag);

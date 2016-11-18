@@ -1,11 +1,11 @@
 <?php
 
-namespace Yab\Quarx\Controllers;
+namespace Ayimdomnic\QuickSite\Controllers;
 
-class HelpController extends QuarxController
+class HelpController extends quicksiteController
 {
     public function main()
     {
-        return view('quarx::help');
+        return view('quicksite::help');
     }
 }

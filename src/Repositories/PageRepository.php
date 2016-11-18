@@ -1,12 +1,12 @@
 <?php
 
-namespace Yab\Quarx\Repositories;
+namespace Ayimdomnic\QuickSite\Repositories;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
-use Quarx;
-use Yab\Quarx\Models\Page;
+use quicksite;
+use Ayimdomnic\QuickSite\Models\Page;
 
 class PageRepository
 {
@@ -29,12 +29,12 @@ class PageRepository
 
     public function paginated()
     {
-        return Page::orderBy('created_at', 'desc')->paginate(Config::get('quarx.pagination', 25));
+        return Page::orderBy('created_at', 'desc')->paginate(Config::get('quicksite.pagination', 25));
     }
 
     public function published()
     {
-        return Page::where('is_published', 1)->where('published_at', '<=', Carbon::now()->format('Y-m-d h:i:s'))->orderBy('created_at', 'desc')->paginate(Config::get('quarx.pagination', 25));
+        return Page::where('is_published', 1)->where('published_at', '<=', Carbon::now()->format('Y-m-d h:i:s'))->orderBy('created_at', 'desc')->paginate(Config::get('quicksite.pagination', 25));
     }
 
     public function search($input)
@@ -48,7 +48,7 @@ class PageRepository
             $query->orWhere($attribute, 'LIKE', '%'.$input['term'].'%');
         }
 
-        return [$query, $input['term'], $query->paginate(Config::get('quarx.pagination', 25))->render()];
+        return [$query, $input['term'], $query->paginate(Config::get('quicksite.pagination', 25))->render()];
     }
 
     /**
@@ -60,7 +60,7 @@ class PageRepository
      */
     public function store($input)
     {
-        $input['url'] = Quarx::convertToURL($input['url']);
+        $input['url'] = quicksite::convertToURL($input['url']);
         $input['is_published'] = (isset($input['is_published'])) ? (bool) $input['is_published'] : 0;
         $input['published_at'] = (isset($input['published_at']) && !empty($input['published_at'])) ? $input['published_at'] : Carbon::now()->format('Y-m-d h:i:s');
 
@@ -93,11 +93,11 @@ class PageRepository
         $page = Page::where('url', $url)->where('is_published', 1)->where('published_at', '<=', Carbon::now()->format('Y-m-d h:i:s'))->first();
 
         if (!$page) {
-            $page = $this->translationRepo->findByUrl($url, 'Yab\Quarx\Models\Page');
+            $page = $this->translationRepo->findByUrl($url, 'Ayimdomnic\QuickSite\Models\Page');
         }
 
-        if ($url === 'home' && config('app.locale') !== config('quarx.default-language')) {
-            $page = $this->translationRepo->findByUrl($url, 'Yab\Quarx\Models\Page');
+        if ($url === 'home' && config('app.locale') !== config('quicksite.default-language')) {
+            $page = $this->translationRepo->findByUrl($url, 'Ayimdomnic\QuickSite\Models\Page');
         }
 
         return $page;
@@ -113,10 +113,10 @@ class PageRepository
      */
     public function update($page, $payload)
     {
-        if (!empty($payload['lang']) && $payload['lang'] !== config('quarx.default-language', 'en')) {
-            return $this->translationRepo->createOrUpdate($page->id, 'Yab\Quarx\Models\Page', $payload);
+        if (!empty($payload['lang']) && $payload['lang'] !== config('quicksite.default-language', 'en')) {
+            return $this->translationRepo->createOrUpdate($page->id, 'Ayimdomnic\QuickSite\Models\Page', $payload);
         } else {
-            $payload['url'] = Quarx::convertToURL($payload['url']);
+            $payload['url'] = quicksite::convertToURL($payload['url']);
             $payload['is_published'] = (isset($payload['is_published'])) ? (bool) $payload['is_published'] : 0;
             $payload['published_at'] = (isset($payload['published_at']) && !empty($payload['published_at'])) ? $payload['published_at'] : Carbon::now()->format('Y-m-d h:i:s');
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Yab\Quarx\Repositories;
+namespace Ayimdomnic\QuickSite\Repositories;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
-use Yab\Quarx\Models\FAQ;
+use Ayimdomnic\QuickSite\Models\FAQ;
 
 class FAQRepository
 {
@@ -33,7 +33,7 @@ class FAQRepository
      */
     public function paginated()
     {
-        return FAQ::orderBy('created_at', 'desc')->paginate(Config::get('quarx.pagination', 25));
+        return FAQ::orderBy('created_at', 'desc')->paginate(Config::get('quicksite.pagination', 25));
     }
 
     /**
@@ -43,7 +43,7 @@ class FAQRepository
      */
     public function published()
     {
-        return FAQ::where('is_published', 1)->where('published_at', '<=', Carbon::now()->format('Y-m-d h:i:s'))->orderBy('created_at', 'desc')->paginate(Config::get('quarx.pagination', 25));
+        return FAQ::where('is_published', 1)->where('published_at', '<=', Carbon::now()->format('Y-m-d h:i:s'))->orderBy('created_at', 'desc')->paginate(Config::get('quicksite.pagination', 25));
     }
 
     /**
@@ -64,7 +64,7 @@ class FAQRepository
             $query->orWhere($attribute, 'LIKE', '%'.$input['term'].'%');
         }
 
-        return [$query, $input['term'], $query->paginate(Config::get('quarx.pagination', 25))->render()];
+        return [$query, $input['term'], $query->paginate(Config::get('quicksite.pagination', 25))->render()];
     }
 
     /**
@@ -104,8 +104,8 @@ class FAQRepository
      */
     public function update($FAQ, $payload)
     {
-        if (!empty($payload['lang']) && $payload['lang'] !== config('quarx.default-language', 'en')) {
-            return $this->translationRepo->createOrUpdate($FAQ->id, 'Yab\Quarx\Models\FAQ', $payload);
+        if (!empty($payload['lang']) && $payload['lang'] !== config('quicksite.default-language', 'en')) {
+            return $this->translationRepo->createOrUpdate($FAQ->id, 'Ayimdomnic\QuickSite\Models\FAQ', $payload);
         } else {
             $payload['is_published'] = (isset($payload['is_published'])) ? (bool) $payload['is_published'] : 0;
             $payload['published_at'] = (isset($payload['published_at']) && !empty($payload['published_at'])) ? $payload['published_at'] : Carbon::now()->format('Y-m-d h:i:s');

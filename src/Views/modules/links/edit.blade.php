@@ -1,4 +1,4 @@
-@extends('quarx::layouts.dashboard')
+@extends('quicksite::layouts.dashboard')
 
 @section('content')
 
@@ -6,12 +6,12 @@
         <h1 class="page-header">Links</h1>
     </div>
 
-    @include('quarx::modules.links.breadcrumbs', ['location' => [['Menu' => URL::to('quarx/menus/'.$links->menu_id.'/edit')], 'links', 'edit']])
+    @include('quicksite::modules.links.breadcrumbs', ['location' => [['Menu' => URL::to('quicksite/menus/'.$links->menu_id.'/edit')], 'links', 'edit']])
 
     <div class="row">
-        {!! Form::model($links, ['route' => ['quarx.links.update', $links->id], 'method' => 'patch', 'class' => 'edit']) !!}
+        {!! Form::model($links, ['route' => ['quicksite.links.update', $links->id], 'method' => 'patch', 'class' => 'edit']) !!}
 
-            {!! FormMaker::fromObject($links, Config::get('quarx.forms.link')) !!}
+            {!! FormMaker::fromObject($links, Config::get('quicksite.forms.link')) !!}
 
             <div class="form-group" style="display: none;">
                 <label for="Page_id">Page</label>
@@ -35,6 +35,6 @@
 @section('javascript')
 
     @parent
-    {!! Minify::javascript(Quarx::asset('js/links-module.js', 'application/javascript')) !!}
+    {!! Minify::javascript(quicksite::asset('js/links-module.js', 'application/javascript')) !!}
 
 @stop

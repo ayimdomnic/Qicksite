@@ -1,4 +1,4 @@
-@extends('quarx::layouts.navigation')
+@extends('quicksite::layouts.navigation')
 
 @section('page-content')
 
@@ -7,7 +7,7 @@
     <div class="raw100 raw-left raw-margin-top-50">
         <div class="col-sm-3 col-md-2 sidebar">
             <div class="raw100 raw-left raw-margin-bottom-90">
-                @include('quarx::dashboard.panel')
+                @include('quicksite::dashboard.panel')
             </div>
         </div>
 
@@ -19,13 +19,13 @@
     </div>
 
     <div class="raw100 raw-left navbar navbar-fixed-bottom">
-        <div class="raw100 raw-left quarx-footer">
+        <div class="raw100 raw-left quicksite-footer">
             <p class="raw-margin-left-20">Brought to you by: <a href="https://yabhq.com">Yab Inc.</a></p>
         </div>
     </div>
 @stop
 
 @section('javascript')
-    {!! Minify::javascript(Quarx::asset('js/dashboard.js', 'application/javascript')) !!}
-    {!! Minify::javascript(Quarx::asset('js/chart.min.js', 'application/javascript')) !!}
+    {!! Minify::javascript(quicksite::asset('js/dashboard.js', 'application/javascript')) !!}
+    {!! Minify::javascript(quicksite::asset('js/chart.min.js', 'application/javascript')) !!}
 @stop

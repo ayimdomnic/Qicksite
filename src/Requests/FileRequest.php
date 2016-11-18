@@ -1,6 +1,6 @@
 <?php
 
-namespace Yab\Quarx\Requests;
+namespace Ayimdomnic\QuickSite\Requests;
 
 use Auth;
 use Gate;
@@ -16,7 +16,7 @@ class FileRequest extends FormRequest
     public function authorize()
     {
         if (env('APP_ENV') !== 'testing') {
-            return Gate::allows('quarx', Auth::user());
+            return Gate::allows('quicksite', Auth::user());
         }
 
         return true;

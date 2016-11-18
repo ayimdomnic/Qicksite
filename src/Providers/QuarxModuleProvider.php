@@ -1,11 +1,11 @@
 <?php
 
-namespace Yab\Quarx\Providers;
+namespace Ayimdomnic\QuickSite\Providers;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
-class QuarxModuleProvider extends ServiceProvider
+class quicksiteModuleProvider extends ServiceProvider
 {
     /**
      * Register the services.
@@ -14,14 +14,14 @@ class QuarxModuleProvider extends ServiceProvider
      */
     public function register()
     {
-        if (Config::get('quarx.load-modules', false)) {
-            $modulePath = base_path(Config::get('quarx.module-directory').'/');
+        if (Config::get('quicksite.load-modules', false)) {
+            $modulePath = base_path(Config::get('quicksite.module-directory').'/');
             $modules = glob($modulePath.'*');
 
             foreach ($modules as $module) {
                 if (is_dir($module)) {
                     $module = lcfirst(str_replace($modulePath, '', $module));
-                    $this->app->register('\Quarx\Modules\\'.ucfirst($module).'\\'.ucfirst($module).'ModuleProvider');
+                    $this->app->register('\quicksite\Modules\\'.ucfirst($module).'\\'.ucfirst($module).'ModuleProvider');
                 }
             }
         }

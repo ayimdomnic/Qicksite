@@ -1,16 +1,16 @@
 <?php
 
-namespace Yab\Quarx\Controllers;
+namespace Ayimdomnic\QuickSite\Controllers;
 
 use Illuminate\Http\Request;
-use Quarx;
+use quicksite;
 use URL;
-use Yab\Quarx\Models\FAQ;
-use Yab\Quarx\Repositories\FAQRepository;
-use Yab\Quarx\Requests\FAQRequest;
-use Yab\Quarx\Services\ValidationService;
+use Ayimdomnic\QuickSite\Models\FAQ;
+use Ayimdomnic\QuickSite\Repositories\FAQRepository;
+use Ayimdomnic\QuickSite\Requests\FAQRequest;
+use Ayimdomnic\QuickSite\Services\ValidationService;
 
-class FAQController extends QuarxController
+class FAQController extends quicksiteController
 {
     /** @var FAQRepository */
     private $faqRepository;
@@ -29,7 +29,7 @@ class FAQController extends QuarxController
     {
         $result = $this->faqRepository->paginated();
 
-        return view('quarx::modules.faqs.index')
+        return view('quicksite::modules.faqs.index')
             ->with('faqs', $result)
             ->with('pagination', $result->render());
     }
@@ -47,7 +47,7 @@ class FAQController extends QuarxController
 
         $result = $this->faqRepository->search($input);
 
-        return view('quarx::modules.faqs.index')
+        return view('quicksite::modules.faqs.index')
             ->with('faqs', $result[0]->get())
             ->with('pagination', $result[2])
             ->with('term', $result[1]);
@@ -60,7 +60,7 @@ class FAQController extends QuarxController
      */
     public function create()
     {
-        return view('quarx::modules.faqs.create');
+        return view('quicksite::modules.faqs.create');
     }
 
     /**
@@ -76,16 +76,16 @@ class FAQController extends QuarxController
 
         if (!$validation['errors']) {
             $faq = $this->faqRepository->store($request->all());
-            Quarx::notification('FAQ saved successfully.', 'success');
+            quicksite::notification('FAQ saved successfully.', 'success');
         } else {
             return $validation['redirect'];
         }
 
         if (!$faq) {
-            Quarx::notification('FAQ could not be saved.', 'warning');
+            quicksite::notification('FAQ could not be saved.', 'warning');
         }
 
-        return redirect(route('quarx.faqs.edit', [$faq->id]));
+        return redirect(route('quicksite.faqs.edit', [$faq->id]));
     }
 
     /**
@@ -100,12 +100,12 @@ class FAQController extends QuarxController
         $faq = $this->faqRepository->findFAQById($id);
 
         if (empty($faq)) {
-            Quarx::notification('FAQ not found', 'warning');
+            quicksite::notification('FAQ not found', 'warning');
 
-            return redirect(route('quarx.faqs.index'));
+            return redirect(route('quicksite.faqs.index'));
         }
 
-        return view('quarx::modules.faqs.edit')->with('faq', $faq);
+        return view('quicksite::modules.faqs.edit')->with('faq', $faq);
     }
 
     /**
@@ -121,16 +121,16 @@ class FAQController extends QuarxController
         $faq = $this->faqRepository->findFAQById($id);
 
         if (empty($faq)) {
-            Quarx::notification('FAQ not found', 'warning');
+            quicksite::notification('FAQ not found', 'warning');
 
-            return redirect(route('quarx.faqs.index'));
+            return redirect(route('quicksite.faqs.index'));
         }
 
         $faq = $this->faqRepository->update($faq, $request->all());
-        Quarx::notification('FAQ updated successfully.', 'success');
+        quicksite::notification('FAQ updated successfully.', 'success');
 
         if (!$faq) {
-            Quarx::notification('FAQ could not be saved.', 'warning');
+            quicksite::notification('FAQ could not be saved.', 'warning');
         }
 
         return redirect(URL::previous());
@@ -148,15 +148,15 @@ class FAQController extends QuarxController
         $faq = $this->faqRepository->findFAQById($id);
 
         if (empty($faq)) {
-            Quarx::notification('FAQ not found', 'warning');
+            quicksite::notification('FAQ not found', 'warning');
 
-            return redirect(route('quarx.faqs.index'));
+            return redirect(route('quicksite.faqs.index'));
         }
 
         $faq->delete();
 
-        Quarx::notification('FAQ deleted successfully.', 'success');
+        quicksite::notification('FAQ deleted successfully.', 'success');
 
-        return redirect(route('quarx.faqs.index'));
+        return redirect(route('quicksite.faqs.index'));
     }
 }

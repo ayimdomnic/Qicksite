@@ -1,20 +1,20 @@
 <?php
 
-namespace Yab\Quarx\Controllers;
+namespace Ayimdomnic\QuickSite\Controllers;
 
 use Config;
 use CryptoService;
 use FileService;
 use Illuminate\Http\Request;
-use Quarx;
+use quicksite;
 use Storage;
-use Yab\Quarx\Models\Image;
-use Yab\Quarx\Repositories\ImageRepository;
-use Yab\Quarx\Requests\ImagesRequest;
-use Yab\Quarx\Services\QuarxResponseService;
-use Yab\Quarx\Services\ValidationService;
+use Ayimdomnic\QuickSite\Models\Image;
+use Ayimdomnic\QuickSite\Repositories\ImageRepository;
+use Ayimdomnic\QuickSite\Requests\ImagesRequest;
+use Ayimdomnic\QuickSite\Services\quicksiteResponseService;
+use Ayimdomnic\QuickSite\Services\ValidationService;
 
-class ImagesController extends QuarxController
+class ImagesController extends quicksiteController
 {
     /** @var ImageRepository */
     private $imagesRepository;
@@ -37,7 +37,7 @@ class ImagesController extends QuarxController
 
         $result = $this->imagesRepository->paginated();
 
-        return view('quarx::modules.images.index')
+        return view('quicksite::modules.images.index')
             ->with('images', $result)
             ->with('pagination', $result->render());
     }
@@ -55,7 +55,7 @@ class ImagesController extends QuarxController
 
         $result = $this->imagesRepository->search($input);
 
-        return view('quarx::modules.images.index')
+        return view('quicksite::modules.images.index')
             ->with('images', $result[0]->get())
             ->with('pagination', $result[2])
             ->with('term', $result[1]);
@@ -68,7 +68,7 @@ class ImagesController extends QuarxController
      */
     public function create()
     {
-        return view('quarx::modules.images.create');
+        return view('quicksite::modules.images.create');
     }
 
     /**
@@ -91,21 +91,21 @@ class ImagesController extends QuarxController
                     ]);
                 }
 
-                Quarx::notification('Image saved successfully.', 'success');
+                quicksite::notification('Image saved successfully.', 'success');
 
                 if (!$imageSaved) {
-                    Quarx::notification('Image was not saved.', 'danger');
+                    quicksite::notification('Image was not saved.', 'danger');
                 }
             } else {
-                Quarx::notification('Image could not be saved', 'danger');
+                quicksite::notification('Image could not be saved', 'danger');
 
                 return $validation['redirect'];
             }
         } catch (Exception $e) {
-            Quarx::notification($e->getMessage() ?: 'Image could not be saved.', 'danger');
+            quicksite::notification($e->getMessage() ?: 'Image could not be saved.', 'danger');
         }
 
-        return redirect(route('quarx.images.index'));
+        return redirect(route('quicksite.images.index'));
     }
 
     /**
@@ -127,9 +127,9 @@ class ImagesController extends QuarxController
             $fileSaved['name'] = CryptoService::encrypt($fileSaved['name']);
             $fileSaved['mime'] = $file->getClientMimeType();
             $fileSaved['size'] = $file->getClientSize();
-            $response = QuarxResponseService::apiResponse('success', $fileSaved);
+            $response = quicksiteResponseService::apiResponse('success', $fileSaved);
         } else {
-            $response = QuarxResponseService::apiErrorResponse($validation['errors'], $validation['inputs']);
+            $response = quicksiteResponseService::apiErrorResponse($validation['errors'], $validation['inputs']);
         }
 
         return $response;
@@ -147,12 +147,12 @@ class ImagesController extends QuarxController
         $images = $this->imagesRepository->findImagesById($id);
 
         if (empty($images)) {
-            Quarx::notification('Image not found', 'warning');
+            quicksite::notification('Image not found', 'warning');
 
-            return redirect(route('quarx.images.index'));
+            return redirect(route('quicksite.images.index'));
         }
 
-        return view('quarx::modules.images.edit')->with('images', $images);
+        return view('quicksite::modules.images.edit')->with('images', $images);
     }
 
     /**
@@ -168,24 +168,24 @@ class ImagesController extends QuarxController
         try {
             $images = $this->imagesRepository->findImagesById($id);
 
-            Quarx::notification('Image updated successfully.', 'success');
+            quicksite::notification('Image updated successfully.', 'success');
 
             if (empty($images)) {
-                Quarx::notification('Image not found', 'warning');
+                quicksite::notification('Image not found', 'warning');
 
-                return redirect(route('quarx.images.index'));
+                return redirect(route('quicksite.images.index'));
             }
 
             $images = $this->imagesRepository->update($images, $request->all());
 
             if (!$images) {
-                Quarx::notification('Image could not be updated', 'danger');
+                quicksite::notification('Image could not be updated', 'danger');
             }
         } catch (Exception $e) {
-            Quarx::notification($e->getMessage() ?: 'Image could not be saved.', 'danger');
+            quicksite::notification($e->getMessage() ?: 'Image could not be saved.', 'danger');
         }
 
-        return redirect(route('quarx.images.edit', $id));
+        return redirect(route('quicksite.images.edit', $id));
     }
 
     /**
@@ -204,16 +204,16 @@ class ImagesController extends QuarxController
         }
 
         if (empty($image)) {
-            Quarx::notification('Image not found', 'warning');
+            quicksite::notification('Image not found', 'warning');
 
-            return redirect(route('quarx.images.index'));
+            return redirect(route('quicksite.images.index'));
         }
 
         $image->delete();
 
-        Quarx::notification('Image deleted successfully.', 'success');
+        quicksite::notification('Image deleted successfully.', 'success');
 
-        return redirect(route('quarx.images.index'));
+        return redirect(route('quicksite.images.index'));
     }
 
     /*
@@ -229,13 +229,13 @@ class ImagesController extends QuarxController
      */
     public function apiList(Request $request)
     {
-        if (Config::get('quarx.api-key') != $request->header('quarx')) {
-            return QuarxResponseService::apiResponse('error', []);
+        if (Config::get('quicksite.api-key') != $request->header('quicksite')) {
+            return quicksiteResponseService::apiResponse('error', []);
         }
 
         $images = $this->imagesRepository->apiPrepared();
 
-        return QuarxResponseService::apiResponse('success', $images);
+        return quicksiteResponseService::apiResponse('success', $images);
     }
 
     /**
@@ -249,6 +249,6 @@ class ImagesController extends QuarxController
     {
         $image = $this->imagesRepository->apiStore($request->all());
 
-        return QuarxResponseService::apiResponse('success', $image);
+        return quicksiteResponseService::apiResponse('success', $image);
     }
 }

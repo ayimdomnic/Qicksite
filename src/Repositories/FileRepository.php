@@ -1,13 +1,13 @@
 <?php
 
-namespace Yab\Quarx\Repositories;
+namespace Ayimdomnic\QuickSite\Repositories;
 
 use Auth;
 use Config;
 use CryptoService;
 use Illuminate\Support\Facades\Schema;
-use Yab\Quarx\Models\File;
-use Yab\Quarx\Services\FileService;
+use Ayimdomnic\QuickSite\Models\File;
+use Ayimdomnic\QuickSite\Services\FileService;
 
 class FileRepository
 {
@@ -28,7 +28,7 @@ class FileRepository
      */
     public function paginated()
     {
-        return File::orderBy('created_at', 'desc')->paginate(Config::get('quarx.pagination', 25));
+        return File::orderBy('created_at', 'desc')->paginate(Config::get('quicksite.pagination', 25));
     }
 
     /**
@@ -49,7 +49,7 @@ class FileRepository
             $query->orWhere($attribute, 'LIKE', '%'.$input['term'].'%');
         }
 
-        return [$query, $input['term'], $query->paginate(Config::get('quarx.pagination', 25))->render()];
+        return [$query, $input['term'], $query->paginate(Config::get('quicksite.pagination', 25))->render()];
     }
 
     /**

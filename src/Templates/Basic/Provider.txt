@@ -1,6 +1,6 @@
 <?php
 
-namespace Quarx\Modules\_camel_casePlural_;
+namespace quicksite\Modules\_camel_casePlural_;
 
 use Illuminate\Routing\Router;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
@@ -30,7 +30,7 @@ class _camel_casePlural_ModuleProvider extends ServiceProvider
         View::addNamespace('_lower_casePlural_', __DIR__.'/Views');
 
         // Configs
-        Config::set('quarx.modules._lower_casePlural_', include(__DIR__.'/config.php'));
+        Config::set('quicksite.modules._lower_casePlural_', include(__DIR__.'/config.php'));
     }
 
     public function register()

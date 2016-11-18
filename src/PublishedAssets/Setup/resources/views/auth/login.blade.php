@@ -1,4 +1,4 @@
-@extends('quarx::layouts.blank')
+@extends('quicksite::layouts.blank')
 
 @section('content')
 
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="col-md-12 raw-margin-top-24">
-                    @if (Config::get('quarx.registration-available', false))
+                    @if (Config::get('quicksite.registration-available', false))
                         <a class="btn raw100 btn-info" href="/register">Register</a>
                     @endif
                 </div>

@@ -1,13 +1,13 @@
 <?php
 
-namespace Yab\Quarx\Repositories;
+namespace Ayimdomnic\QuickSite\Repositories;
 
 use Config;
 use CryptoService;
 use Illuminate\Support\Facades\Schema;
-use Quarx;
-use Yab\Quarx\Models\Image;
-use Yab\Quarx\Services\FileService;
+use quicksite;
+use Ayimdomnic\QuickSite\Models\Image;
+use Ayimdomnic\QuickSite\Services\FileService;
 
 class ImageRepository
 {
@@ -23,17 +23,17 @@ class ImageRepository
 
     public function paginated()
     {
-        return Image::orderBy('created_at', 'desc')->paginate(Config::get('quarx.pagination', 25));
+        return Image::orderBy('created_at', 'desc')->paginate(Config::get('quicksite.pagination', 25));
     }
 
     public function publishedAndPaginated()
     {
-        return Image::orderBy('created_at', 'desc')->where('is_published', 1)->paginate(Config::get('quarx.pagination', 25));
+        return Image::orderBy('created_at', 'desc')->where('is_published', 1)->paginate(Config::get('quicksite.pagination', 25));
     }
 
     public function published()
     {
-        return Image::where('is_published', 1)->orderBy('created_at', 'desc')->paginate(Config::get('quarx.pagination', 25));
+        return Image::where('is_published', 1)->orderBy('created_at', 'desc')->paginate(Config::get('quicksite.pagination', 25));
     }
 
     /**
@@ -101,7 +101,7 @@ class ImageRepository
             $query->orWhere($attribute, 'LIKE', '%'.$input['term'].'%');
         }
 
-        return [$query, $input['term'], $query->paginate(Config::get('quarx.pagination', 25))->render()];
+        return [$query, $input['term'], $query->paginate(Config::get('quicksite.pagination', 25))->render()];
     }
 
     /**
@@ -138,7 +138,7 @@ class ImageRepository
         $savedFile = $input['location'];
 
         if (!$savedFile) {
-            Quarx::notification('Image could not be saved.', 'danger');
+            quicksite::notification('Image could not be saved.', 'danger');
 
             return false;
         }
@@ -181,7 +181,7 @@ class ImageRepository
             $savedFile = FileService::saveFile($input['location'], 'images/');
 
             if (!$savedFile) {
-                Quarx::notification('Image could not be updated.', 'danger');
+                quicksite::notification('Image could not be updated.', 'danger');
 
                 return false;
             }

@@ -1,22 +1,22 @@
 <?php
 
-namespace Yab\Quarx\Controllers;
+namespace Ayimdomnic\QuickSite\Controllers;
 
 use Config;
 use CryptoService;
 use Illuminate\Http\Request;
-use Quarx;
+use quicksite;
 use Redirect;
 use Response;
 use Storage;
-use Yab\Quarx\Models\File;
-use Yab\Quarx\Repositories\FileRepository;
-use Yab\Quarx\Requests\FileRequest;
-use Yab\Quarx\Services\FileService;
-use Yab\Quarx\Services\QuarxResponseService;
-use Yab\Quarx\Services\ValidationService;
+use Ayimdomnic\QuickSite\Models\File;
+use Ayimdomnic\QuickSite\Repositories\FileRepository;
+use Ayimdomnic\QuickSite\Requests\FileRequest;
+use Ayimdomnic\QuickSite\Services\FileService;
+use Ayimdomnic\QuickSite\Services\quicksiteResponseService;
+use Ayimdomnic\QuickSite\Services\ValidationService;
 
-class FilesController extends QuarxController
+class FilesController extends quicksiteController
 {
     /** @var FilesRepository */
     private $fileRepository;
@@ -37,7 +37,7 @@ class FilesController extends QuarxController
     {
         $result = $this->fileRepository->paginated();
 
-        return view('quarx::modules.files.index')
+        return view('quicksite::modules.files.index')
             ->with('files', $result)
             ->with('pagination', $result->render());
     }
@@ -55,7 +55,7 @@ class FilesController extends QuarxController
 
         $result = $this->fileRepository->search($input);
 
-        return view('quarx::modules.files.index')
+        return view('quicksite::modules.files.index')
             ->with('files', $result[0]->get())
             ->with('pagination', $result[2])
             ->with('term', $result[1]);
@@ -68,7 +68,7 @@ class FilesController extends QuarxController
      */
     public function create()
     {
-        return view('quarx::modules.files.create');
+        return view('quicksite::modules.files.create');
     }
 
     /**
@@ -88,9 +88,9 @@ class FilesController extends QuarxController
             return $validation['redirect'];
         }
 
-        Quarx::notification('File saved successfully.', 'success');
+        quicksite::notification('File saved successfully.', 'success');
 
-        return redirect(route('quarx.files.index'));
+        return redirect(route('quicksite.files.index'));
     }
 
     /**
@@ -112,9 +112,9 @@ class FilesController extends QuarxController
             $fileSaved['name'] = CryptoService::encrypt($fileSaved['name']);
             $fileSaved['mime'] = $file->getClientMimeType();
             $fileSaved['size'] = $file->getClientSize();
-            $response = QuarxResponseService::apiResponse('success', $fileSaved);
+            $response = quicksiteResponseService::apiResponse('success', $fileSaved);
         } else {
-            $response = QuarxResponseService::apiErrorResponse($validation['errors'], $validation['inputs']);
+            $response = quicksiteResponseService::apiErrorResponse($validation['errors'], $validation['inputs']);
         }
 
         return $response;
@@ -132,9 +132,9 @@ class FilesController extends QuarxController
         try {
             Storage::delete($id);
 
-            $response = QuarxResponseService::apiResponse('success', 'success!');
+            $response = quicksiteResponseService::apiResponse('success', 'success!');
         } catch (Exception $e) {
-            $response = QuarxResponseService::apiResponse('error', $e->getMessage());
+            $response = quicksiteResponseService::apiResponse('error', $e->getMessage());
         }
 
         return $response;
@@ -152,12 +152,12 @@ class FilesController extends QuarxController
         $files = $this->fileRepository->findFilesById($id);
 
         if (empty($files)) {
-            Quarx::notification('File not found', 'warning');
+            quicksite::notification('File not found', 'warning');
 
-            return redirect(route('quarx.files.index'));
+            return redirect(route('quicksite.files.index'));
         }
 
-        return view('quarx::modules.files.edit')->with('files', $files);
+        return view('quicksite::modules.files.edit')->with('files', $files);
     }
 
     /**
@@ -173,14 +173,14 @@ class FilesController extends QuarxController
         $files = $this->fileRepository->findFilesById($id);
 
         if (empty($files)) {
-            Quarx::notification('File not found', 'warning');
+            quicksite::notification('File not found', 'warning');
 
-            return redirect(route('quarx.files.index'));
+            return redirect(route('quicksite.files.index'));
         }
 
         $files = $this->fileRepository->update($files, $request->all());
 
-        Quarx::notification('File updated successfully.', 'success');
+        quicksite::notification('File updated successfully.', 'success');
 
         return Redirect::back();
     }
@@ -197,17 +197,17 @@ class FilesController extends QuarxController
         $files = $this->fileRepository->findFilesById($id);
 
         if (empty($files)) {
-            Quarx::notification('File not found', 'warning');
+            quicksite::notification('File not found', 'warning');
 
-            return redirect(route('quarx.files.index'));
+            return redirect(route('quicksite.files.index'));
         }
 
         Storage::delete($files->location);
         $files->delete();
 
-        Quarx::notification('File deleted successfully.', 'success');
+        quicksite::notification('File deleted successfully.', 'success');
 
-        return redirect(route('quarx.files.index'));
+        return redirect(route('quicksite.files.index'));
     }
 
     /**
@@ -217,12 +217,12 @@ class FilesController extends QuarxController
      */
     public function apiList(Request $request)
     {
-        if (Config::get('quarx.api-key') != $request->header('quarx')) {
-            return QuarxResponseService::apiResponse('error', []);
+        if (Config::get('quicksite.api-key') != $request->header('quicksite')) {
+            return quicksiteResponseService::apiResponse('error', []);
         }
 
         $files = $this->fileRepository->apiPrepared();
 
-        return QuarxResponseService::apiResponse('success', $files);
+        return quicksiteResponseService::apiResponse('success', $files);
     }
 }

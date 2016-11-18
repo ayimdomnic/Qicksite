@@ -1,16 +1,16 @@
 <?php
 
-namespace Yab\Quarx\Controllers;
+namespace Ayimdomnic\QuickSite\Controllers;
 
 use Illuminate\Http\Request;
-use Quarx;
+use quicksite;
 use URL;
-use Yab\Quarx\Models\Event;
-use Yab\Quarx\Repositories\EventRepository;
-use Yab\Quarx\Requests\EventRequest;
-use Yab\Quarx\Services\ValidationService;
+use Ayimdomnic\QuickSite\Models\Event;
+use Ayimdomnic\QuickSite\Repositories\EventRepository;
+use Ayimdomnic\QuickSite\Requests\EventRequest;
+use Ayimdomnic\QuickSite\Services\ValidationService;
 
-class EventController extends QuarxController
+class EventController extends quicksiteController
 {
     /** @var EventRepository */
     private $eventRepository;
@@ -29,7 +29,7 @@ class EventController extends QuarxController
     {
         $result = $this->eventRepository->paginated();
 
-        return view('quarx::modules.events.index')
+        return view('quicksite::modules.events.index')
             ->with('events', $result)
             ->with('pagination', $result->render());
     }
@@ -47,7 +47,7 @@ class EventController extends QuarxController
 
         $result = $this->eventRepository->search($input);
 
-        return view('quarx::modules.events.index')
+        return view('quicksite::modules.events.index')
             ->with('events', $result[0]->get())
             ->with('pagination', $result[2])
             ->with('term', $result[1]);
@@ -60,7 +60,7 @@ class EventController extends QuarxController
      */
     public function create()
     {
-        return view('quarx::modules.events.create');
+        return view('quicksite::modules.events.create');
     }
 
     /**
@@ -76,16 +76,16 @@ class EventController extends QuarxController
 
         if (!$validation['errors']) {
             $event = $this->eventRepository->store($request->all());
-            Quarx::notification('Event saved successfully.', 'success');
+            quicksite::notification('Event saved successfully.', 'success');
         } else {
             return $validation['redirect'];
         }
 
         if (!$event) {
-            Quarx::notification('Event could not be saved.', 'warning');
+            quicksite::notification('Event could not be saved.', 'warning');
         }
 
-        return redirect(route('quarx.events.edit', [$event->id]));
+        return redirect(route('quicksite.events.edit', [$event->id]));
     }
 
     /**
@@ -100,12 +100,12 @@ class EventController extends QuarxController
         $event = $this->eventRepository->findEventById($id);
 
         if (empty($event)) {
-            Quarx::notification('Event not found', 'warning');
+            quicksite::notification('Event not found', 'warning');
 
-            return redirect(route('quarx.events.index'));
+            return redirect(route('quicksite.events.index'));
         }
 
-        return view('quarx::modules.events.edit')->with('event', $event);
+        return view('quicksite::modules.events.edit')->with('event', $event);
     }
 
     /**
@@ -121,16 +121,16 @@ class EventController extends QuarxController
         $event = $this->eventRepository->findEventById($id);
 
         if (empty($event)) {
-            Quarx::notification('Event not found', 'warning');
+            quicksite::notification('Event not found', 'warning');
 
-            return redirect(route('quarx.events.index'));
+            return redirect(route('quicksite.events.index'));
         }
 
         $event = $this->eventRepository->update($event, $request->all());
-        Quarx::notification('Event updated successfully.', 'success');
+        quicksite::notification('Event updated successfully.', 'success');
 
         if (!$event) {
-            Quarx::notification('Event could not be saved.', 'warning');
+            quicksite::notification('Event could not be saved.', 'warning');
         }
 
         return redirect(URL::previous());
@@ -148,15 +148,15 @@ class EventController extends QuarxController
         $event = $this->eventRepository->findEventById($id);
 
         if (empty($event)) {
-            Quarx::notification('Event not found', 'warning');
+            quicksite::notification('Event not found', 'warning');
 
-            return redirect(route('quarx.events.index'));
+            return redirect(route('quicksite.events.index'));
         }
 
         $event->delete();
 
-        Quarx::notification('Event deleted successfully.', 'success');
+        quicksite::notification('Event deleted successfully.', 'success');
 
-        return redirect(route('quarx.events.index'));
+        return redirect(route('quicksite.events.index'));
     }
 }

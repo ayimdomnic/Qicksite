@@ -1,6 +1,6 @@
 <?php
 
-namespace Yab\Quarx\Console;
+namespace Ayimdomnic\QuickSite\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -21,7 +21,7 @@ class ModulePublish extends Command
      *
      * @var string
      */
-    protected $description = 'Publish a Quarx module';
+    protected $description = 'Publish a quicksite module';
 
     /**
      * Execute the console command.
@@ -30,14 +30,14 @@ class ModulePublish extends Command
      */
     public function fire()
     {
-        if (is_dir(base_path(Config::get('quarx.module-directory')).'/'.ucfirst($this->argument('module')).'/Publishes')) {
+        if (is_dir(base_path(Config::get('quicksite.module-directory')).'/'.ucfirst($this->argument('module')).'/Publishes')) {
             $fileSystem = new Filesystem();
 
-            $files = $fileSystem->allFiles(base_path(Config::get('quarx.module-directory')).'/'.ucfirst($this->argument('module')).'/Publishes');
+            $files = $fileSystem->allFiles(base_path(Config::get('quicksite.module-directory')).'/'.ucfirst($this->argument('module')).'/Publishes');
             $this->line("\n");
             foreach ($files as $file) {
                 if ($file->getType() == 'file') {
-                    $this->line(str_replace(base_path(Config::get('quarx.module-directory')).'/'.ucfirst($this->argument('module')).'/Publishes/', '', $file));
+                    $this->line(str_replace(base_path(Config::get('quicksite.module-directory')).'/'.ucfirst($this->argument('module')).'/Publishes/', '', $file));
                 }
             }
 
@@ -47,10 +47,10 @@ class ModulePublish extends Command
 
             if ($result) {
                 foreach ($files as $file) {
-                    $newFileName = str_replace(base_path('quarx/modules/'.ucfirst($this->argument('module')).'/Publishes/'), '', $file);
+                    $newFileName = str_replace(base_path('quicksite/modules/'.ucfirst($this->argument('module')).'/Publishes/'), '', $file);
                     if (strstr($newFileName, 'resources/themes/')) {
-                        $newFileName = str_replace('/default/', '/'.Config::get('quarx.frontend-theme').'/', $newFileName);
-                        $this->line('Copying '.$newFileName.' using current Quarx theme...');
+                        $newFileName = str_replace('/default/', '/'.Config::get('quicksite.frontend-theme').'/', $newFileName);
+                        $this->line('Copying '.$newFileName.' using current quicksite theme...');
                     } else {
                         $this->line('Copying '.$newFileName.'...');
                     }

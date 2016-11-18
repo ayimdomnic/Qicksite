@@ -1,6 +1,6 @@
 <?php
 
-namespace Yab\Quarx\Models;
+namespace Ayimdomnic\QuickSite\Models;
 
 use Config;
 use FileService;
@@ -59,10 +59,10 @@ class Image extends Model
      */
     public function getDataUrlAttribute()
     {
-        if (Config::get('quarx.storage-location') === 'local' || Config::get('quarx.storage-location') === null) {
+        if (Config::get('quicksite.storage-location') === 'local' || Config::get('quicksite.storage-location') === null) {
             $imagePath = storage_path('app/'.$this->location);
         } else {
-            $imagePath = Storage::disk(Config::get('quarx.storage-location', 'local'))->url($this->location);
+            $imagePath = Storage::disk(Config::get('quicksite.storage-location', 'local'))->url($this->location);
         }
 
         $image = InterventionImage::make($imagePath)->resize(800, null);

@@ -18,12 +18,12 @@
         |--------------------------------------------------------------------------
         */
 
-        Route::group(['prefix' => 'quarx/api'], function () {
+        Route::group(['prefix' => 'quicksite/api'], function () {
             Route::get('images/list', 'ImagesController@apiList');
             Route::post('images/store', 'ImagesController@apiStore');
             Route::get('files/list', 'FilesController@apiList');
 
-            Route::group(['middleware' => ['quarx-api']], function () {
+            Route::group(['middleware' => ['quicksite-api']], function () {
                 Route::get('blog', 'ApiController@all');
                 Route::get('blog/{id}', 'ApiController@find');
 
@@ -49,14 +49,14 @@
 
         /*
         |--------------------------------------------------------------------------
-        | Quarx
+        | quicksite
         |--------------------------------------------------------------------------
         */
 
-        Route::group(['prefix' => 'quarx'], function () {
+        Route::group(['prefix' => 'quicksite'], function () {
             Route::get('asset/{path}/{contentType}', 'AssetController@asset');
 
-            Route::group(['middleware' => ['auth', 'quarx']], function () {
+            Route::group(['middleware' => ['auth', 'quicksite']], function () {
                 Route::get('dashboard', 'DashboardController@main');
                 Route::get('help', 'HelpController@main');
 
@@ -66,8 +66,8 @@
                 |--------------------------------------------------------------------------
                 */
 
-                Route::get('preview/{entity}/{entityId}', 'QuarxFeatureController@preview');
-                Route::get('rollback/{entity}/{entityId}', 'QuarxFeatureController@rollback');
+                Route::get('preview/{entity}/{entityId}', 'quicksiteFeatureController@preview');
+                Route::get('rollback/{entity}/{entityId}', 'quicksiteFeatureController@rollback');
 
                 /*
                 |--------------------------------------------------------------------------
@@ -75,7 +75,7 @@
                 |--------------------------------------------------------------------------
                 */
 
-                Route::resource('menus', 'MenuController', ['as' => 'quarx']);
+                Route::resource('menus', 'MenuController', ['as' => 'quicksite']);
                 Route::post('menus/search', 'MenuController@search');
 
                 /*
@@ -84,7 +84,7 @@
                 |--------------------------------------------------------------------------
                 */
 
-                Route::resource('links', 'LinksController', ['except' => ['index', 'show'], 'as' => 'quarx']);
+                Route::resource('links', 'LinksController', ['except' => ['index', 'show'], 'as' => 'quicksite']);
                 Route::post('links/search', 'LinksController@search');
 
                 /*
@@ -93,7 +93,7 @@
                 |--------------------------------------------------------------------------
                 */
 
-                Route::resource('images', 'ImagesController', ['as' => 'quarx', 'except' => ['show']]);
+                Route::resource('images', 'ImagesController', ['as' => 'quicksite', 'except' => ['show']]);
                 Route::post('images/search', 'ImagesController@search');
                 Route::post('images/upload', 'ImagesController@upload');
 
@@ -103,7 +103,7 @@
                 |--------------------------------------------------------------------------
                 */
 
-                Route::resource('blog', 'BlogController', ['as' => 'quarx', 'except' => ['show']]);
+                Route::resource('blog', 'BlogController', ['as' => 'quicksite', 'except' => ['show']]);
                 Route::post('blog/search', 'BlogController@search');
 
                 /*
@@ -112,7 +112,7 @@
                 |--------------------------------------------------------------------------
                 */
 
-                Route::resource('pages', 'PagesController', ['as' => 'quarx', 'except' => ['show']]);
+                Route::resource('pages', 'PagesController', ['as' => 'quicksite', 'except' => ['show']]);
                 Route::post('pages/search', 'PagesController@search');
 
                 /*
@@ -121,7 +121,7 @@
                 |--------------------------------------------------------------------------
                 */
 
-                Route::resource('widgets', 'WidgetsController', ['as' => 'quarx', 'except' => ['show']]);
+                Route::resource('widgets', 'WidgetsController', ['as' => 'quicksite', 'except' => ['show']]);
                 Route::post('widgets/search', 'WidgetsController@search');
 
                 /*
@@ -130,7 +130,7 @@
                 |--------------------------------------------------------------------------
                 */
 
-                Route::resource('faqs', 'FAQController', ['as' => 'quarx', 'except' => ['show']]);
+                Route::resource('faqs', 'FAQController', ['as' => 'quicksite', 'except' => ['show']]);
                 Route::post('faqs/search', 'FAQController@search');
 
                 /*
@@ -139,7 +139,7 @@
                 |--------------------------------------------------------------------------
                 */
 
-                Route::resource('events', 'EventController', ['as' => 'quarx', 'except' => ['show']]);
+                Route::resource('events', 'EventController', ['as' => 'quicksite', 'except' => ['show']]);
                 Route::post('events/search', 'EventController@search');
 
                 /*
@@ -152,7 +152,7 @@
                 Route::post('files/upload', 'FilesController@upload');
                 Route::post('files/search', 'FilesController@search');
 
-                Route::resource('files', 'FilesController', ['as' => 'quarx', 'except' => ['show']]);
+                Route::resource('files', 'FilesController', ['as' => 'quicksite', 'except' => ['show']]);
             });
         });
     });

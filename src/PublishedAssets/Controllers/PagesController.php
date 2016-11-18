@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Quarx;
+namespace App\Http\Controllers\quicksite;
 
 use App\Http\Controllers\Controller;
-use Yab\Quarx\Repositories\PageRepository;
+use Ayimdomnic\QuickSite\Repositories\PageRepository;
 
 class PagesController extends Controller
 {
@@ -26,7 +26,7 @@ class PagesController extends Controller
     {
         $page = $this->pagesRepository->findPagesByURL('home');
 
-        $view = view('quarx-frontend::pages.home');
+        $view = view('quicksite-frontend::pages.home');
 
         if (is_null($page)) {
             return $view;
@@ -48,7 +48,7 @@ class PagesController extends Controller
             abort(404);
         }
 
-        return view('quarx-frontend::pages.all')->with('pages', $pages);
+        return view('quicksite-frontend::pages.all')->with('pages', $pages);
     }
 
     /**
@@ -66,6 +66,6 @@ class PagesController extends Controller
             abort(404);
         }
 
-        return view('quarx-frontend::pages.'.$page->template)->with('page', $page);
+        return view('quicksite-frontend::pages.'.$page->template)->with('page', $page);
     }
 }

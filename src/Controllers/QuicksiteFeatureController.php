@@ -1,32 +1,32 @@
 <?php
 
-namespace Yab\Quarx\Controllers;
+namespace Yab\Quicksite\Controllers;
 
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
-use Quarx;
-use Yab\Quarx\Models\Archive;
+use Quicksite;
+use Yab\Quicksite\Models\Archive;
 
-class QuicksiteFeatureController extends QuarxController
+class QuicksiteFeatureController extends QuicksiteController
 {
     public function rollback($entity, $id)
     {
-        $modelString = 'Yab\Quarx\Models\\'.ucfirst($entity);
+        $modelString = 'Yab\Quicksite\Models\\'.ucfirst($entity);
 
         if (!class_exists($modelString)) {
-            $modelString = 'Yab\Quarx\Models\\'.ucfirst($entity).'s';
+            $modelString = 'Yab\Quicksite\Models\\'.ucfirst($entity).'s';
         }
         if (!class_exists($modelString)) {
-            $modelString = 'Quarx\Modules\\'.ucfirst(str_plural($entity)).'.\Models\\'.ucfirst(str_plural($entity));
+            $modelString = 'Quicksite\Modules\\'.ucfirst(str_plural($entity)).'.\Models\\'.ucfirst(str_plural($entity));
         }
         if (!class_exists($modelString)) {
-            $modelString = 'Quarx\Modules\\'.ucfirst(str_plural($entity)).'\Models\\'.ucfirst(str_singular($entity));
+            $modelString = 'Quicksite\Modules\\'.ucfirst(str_plural($entity)).'\Models\\'.ucfirst(str_singular($entity));
         }
         if (!class_exists($modelString)) {
-            $modelString = 'Quarx\Modules\\'.ucfirst(str_singular($entity)).'\Models\\'.ucfirst(str_singular($entity));
+            $modelString = 'Quicksite\Modules\\'.ucfirst(str_singular($entity)).'\Models\\'.ucfirst(str_singular($entity));
         }
         if (!class_exists($modelString)) {
-            Quarx::notification('Could not rollback Model not found', 'warning');
+            Quicksite::notification('Could not rollback Model not found', 'warning');
 
             return redirect(URL::previous());
         }
@@ -37,7 +37,7 @@ class QuicksiteFeatureController extends QuarxController
         $archive = Archive::where('entity_id', $id)->where('entity_type', $modelString)->limit(1)->offset(1)->orderBy('id', 'desc')->first();
 
         if (!$archive) {
-            Quarx::notification('Could not rollback', 'warning');
+            Quicksite::notification('Could not rollback', 'warning');
 
             return redirect(URL::previous());
         }
@@ -46,7 +46,7 @@ class QuicksiteFeatureController extends QuarxController
         $modelInstance->fill($archiveData);
         $modelInstance->save();
 
-        Quarx::notification('Rollback was successful', 'success');
+        Quicksite::notification('Rollback was successful', 'success');
 
         return redirect(URL::previous());
     }
@@ -61,10 +61,10 @@ class QuicksiteFeatureController extends QuarxController
      */
     public function preview($entity, $id)
     {
-        $modelString = 'Yab\Quarx\Models\\'.ucfirst($entity);
+        $modelString = 'Yab\Quicksite\Models\\'.ucfirst($entity);
 
         if (!class_exists($modelString)) {
-            $modelString = 'Yab\Quarx\Models\\'.ucfirst($entity).'s';
+            $modelString = 'Yab\Quicksite\Models\\'.ucfirst($entity).'s';
         }
 
         $model = new $modelString();
@@ -74,7 +74,7 @@ class QuicksiteFeatureController extends QuarxController
             $entity => $modelInstance,
         ];
 
-        if (request('lang') != config('quarx.default-language', Quarx::config('quarx.default-language'))) {
+        if (request('lang') != config('quicksite.default-language', quicksite::config('quicksite.default-language'))) {
             if ($modelInstance->translation(request('lang'))) {
                 $data = [
                     $entity => $modelInstance->translation(request('lang'))->data,
@@ -82,14 +82,14 @@ class QuicksiteFeatureController extends QuarxController
             }
         }
 
-        $view = 'quarx-frontend::'.$entity.'.show';
+        $view = 'quicksite-frontend::'.$entity.'.show';
 
         if (!View::exists($view)) {
-            $view = 'quarx-frontend::'.$entity.'s.show';
+            $view = 'quicksite-frontend::'.$entity.'s.show';
         }
 
         if ($entity === 'page') {
-            $view = 'quarx-frontend::pages.'.$modelInstance->template;
+            $view = 'quicksite-frontend::pages.'.$modelInstance->template;
         }
 
         return view($view, $data);

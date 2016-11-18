@@ -1,18 +1,18 @@
 <?php
 
-namespace Yab\Quarx\Providers;
+namespace Ayimdomnic\QuickSite\Providers;
 
 use App;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
-use Yab\Quarx\Services\BlogService;
-use Yab\Quarx\Services\CryptoService;
-use Yab\Quarx\Services\EventService;
-use Yab\Quarx\Services\ModuleService;
-use Yab\Quarx\Services\PageService;
-use Yab\Quarx\Services\QuarxService;
+use Ayimdomnic\QuickSite\Services\BlogService;
+use Ayimdomnic\QuickSite\Services\CryptoService;
+use Ayimdomnic\QuickSite\Services\EventService;
+use Ayimdomnic\QuickSite\Services\ModuleService;
+use Ayimdomnic\QuickSite\Services\PageService;
+use Ayimdomnic\QuickSite\Services\quicksiteService;
 
-class QuarxServiceProvider extends ServiceProvider
+class quicksiteServiceProvider extends ServiceProvider
 {
     /**
      * Register the services.
@@ -23,16 +23,16 @@ class QuarxServiceProvider extends ServiceProvider
     {
         $loader = AliasLoader::getInstance();
 
-        $loader->alias('Quarx', \Yab\Quarx\Facades\QuarxServiceFacade::class);
-        $loader->alias('PageService', \Yab\Quarx\Facades\PageServiceFacade::class);
-        $loader->alias('EventService', \Yab\Quarx\Facades\EventServiceFacade::class);
-        $loader->alias('CryptoService', \Yab\Quarx\Facades\CryptoServiceFacade::class);
-        $loader->alias('ModuleService', \Yab\Quarx\Facades\ModuleServiceFacade::class);
-        $loader->alias('BlogService', \Yab\Quarx\Facades\BlogServiceFacade::class);
-        $loader->alias('FileService', \Yab\Quarx\Services\FileService::class);
+        $loader->alias('quicksite', \Ayimdomnic\QuickSite\Facades\quicksiteServiceFacade::class);
+        $loader->alias('PageService', \Ayimdomnic\QuickSite\Facades\PageServiceFacade::class);
+        $loader->alias('EventService', \Ayimdomnic\QuickSite\Facades\EventServiceFacade::class);
+        $loader->alias('CryptoService', \Ayimdomnic\QuickSite\Facades\CryptoServiceFacade::class);
+        $loader->alias('ModuleService', \Ayimdomnic\QuickSite\Facades\ModuleServiceFacade::class);
+        $loader->alias('BlogService', \Ayimdomnic\QuickSite\Facades\BlogServiceFacade::class);
+        $loader->alias('FileService', \Ayimdomnic\QuickSite\Services\FileService::class);
 
-        $this->app->bind('QuarxService', function ($app) {
-            return new QuarxService();
+        $this->app->bind('quicksiteService', function ($app) {
+            return new quicksiteService();
         });
 
         $this->app->bind('PageService', function ($app) {

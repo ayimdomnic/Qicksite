@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Gate;
 
-class Quarx
+class quicksite
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class Quarx
      */
     public function handle($request, Closure $next)
     {
-        if (Gate::allows('quarx')) {
+        if (Gate::allows('quicksite')) {
             return $next($request);
         }
 

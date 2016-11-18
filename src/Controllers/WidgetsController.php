@@ -1,16 +1,16 @@
 <?php
 
-namespace Yab\Quarx\Controllers;
+namespace Ayimdomnic\QuickSite\Controllers;
 
 use Illuminate\Http\Request;
-use Quarx;
+use quicksite;
 use URL;
-use Yab\Quarx\Models\Widget;
-use Yab\Quarx\Repositories\WidgetRepository;
-use Yab\Quarx\Requests\WidgetsRequest;
-use Yab\Quarx\Services\ValidationService;
+use Ayimdomnic\QuickSite\Models\Widget;
+use Ayimdomnic\QuickSite\Repositories\WidgetRepository;
+use Ayimdomnic\QuickSite\Requests\WidgetsRequest;
+use Ayimdomnic\QuickSite\Services\ValidationService;
 
-class WidgetsController extends QuarxController
+class WidgetsController extends quicksiteController
 {
     /** @var WidgetRepository */
     private $widgetsRepository;
@@ -29,7 +29,7 @@ class WidgetsController extends QuarxController
     {
         $result = $this->widgetsRepository->paginated();
 
-        return view('quarx::modules.widgets.index')
+        return view('quicksite::modules.widgets.index')
             ->with('widgets', $result)
             ->with('pagination', $result->render());
     }
@@ -47,7 +47,7 @@ class WidgetsController extends QuarxController
 
         $result = $this->widgetsRepository->search($input);
 
-        return view('quarx::modules.widgets.index')
+        return view('quicksite::modules.widgets.index')
             ->with('widgets', $result[0]->get())
             ->with('pagination', $result[2])
             ->with('term', $result[1]);
@@ -60,7 +60,7 @@ class WidgetsController extends QuarxController
      */
     public function create()
     {
-        return view('quarx::modules.widgets.create');
+        return view('quicksite::modules.widgets.create');
     }
 
     /**
@@ -80,9 +80,9 @@ class WidgetsController extends QuarxController
             return $validation['redirect'];
         }
 
-        Quarx::notification('Widgets saved successfully.', 'success');
+        quicksite::notification('Widgets saved successfully.', 'success');
 
-        return redirect(route('quarx.widgets.edit', [$widgets->id]));
+        return redirect(route('quicksite.widgets.edit', [$widgets->id]));
     }
 
     /**
@@ -97,12 +97,12 @@ class WidgetsController extends QuarxController
         $widgets = $this->widgetsRepository->findWidgetsById($id);
 
         if (empty($widgets)) {
-            Quarx::notification('Widgets not found', 'warning');
+            quicksite::notification('Widgets not found', 'warning');
 
-            return redirect(route('quarx.widgets.index'));
+            return redirect(route('quicksite.widgets.index'));
         }
 
-        return view('quarx::modules.widgets.edit')->with('widgets', $widgets);
+        return view('quicksite::modules.widgets.edit')->with('widgets', $widgets);
     }
 
     /**
@@ -118,14 +118,14 @@ class WidgetsController extends QuarxController
         $widgets = $this->widgetsRepository->findWidgetsById($id);
 
         if (empty($widgets)) {
-            Quarx::notification('Widgets not found', 'warning');
+            quicksite::notification('Widgets not found', 'warning');
 
-            return redirect(route('quarx.widgets.index'));
+            return redirect(route('quicksite.widgets.index'));
         }
 
         $widgets = $this->widgetsRepository->update($widgets, $request->all());
 
-        Quarx::notification('Widgets updated successfully.', 'success');
+        quicksite::notification('Widgets updated successfully.', 'success');
 
         return redirect(URL::previous());
     }
@@ -142,15 +142,15 @@ class WidgetsController extends QuarxController
         $widgets = $this->widgetsRepository->findWidgetsById($id);
 
         if (empty($widgets)) {
-            Quarx::notification('Widgets not found', 'warning');
+            quicksite::notification('Widgets not found', 'warning');
 
-            return redirect(route('quarx.widgets.index'));
+            return redirect(route('quicksite.widgets.index'));
         }
 
         $widgets->delete();
 
-        Quarx::notification('Widgets deleted successfully.', 'success');
+        quicksite::notification('Widgets deleted successfully.', 'success');
 
-        return redirect(route('quarx.widgets.index'));
+        return redirect(route('quicksite.widgets.index'));
     }
 }

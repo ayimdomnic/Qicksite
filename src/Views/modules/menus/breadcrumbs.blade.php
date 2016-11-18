@@ -1,8 +1,8 @@
 <div class="row">
     <ol class="breadcrumb">
-        <li><a href="{!! url('quarx/menus') !!}">Menus</a></li>
+        <li><a href="{!! url('quicksite/menus') !!}">Menus</a></li>
 
-            {!! Quarx::breadcrumbs($location) !!}
+            {!! quicksite::breadcrumbs($location) !!}
 
         <li class="active"></li>
     </ol>

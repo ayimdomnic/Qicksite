@@ -1,8 +1,8 @@
 <?php
 
-namespace Yab\Quarx\Repositories;
+namespace Ayimdomnic\QuickSite\Repositories;
 
-use Yab\Quarx\Models\Link;
+use Ayimdomnic\QuickSite\Models\Link;
 
 class LinkRepository
 {

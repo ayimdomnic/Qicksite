@@ -1,16 +1,16 @@
 <?php
 
-namespace Yab\Quarx\Controllers;
+namespace Ayimdomnic\QuickSite\Controllers;
 
 use Illuminate\Http\Request;
-use Quarx;
+use quicksite;
 use URL;
-use Yab\Quarx\Models\Blog;
-use Yab\Quarx\Repositories\BlogRepository;
-use Yab\Quarx\Requests\BlogRequest;
-use Yab\Quarx\Services\ValidationService;
+use Ayimdomnic\QuickSite\Models\Blog;
+use Ayimdomnic\QuickSite\Repositories\BlogRepository;
+use Ayimdomnic\QuickSite\Requests\BlogRequest;
+use Ayimdomnic\QuickSite\Services\ValidationService;
 
-class BlogController extends QuarxController
+class BlogController extends quicksiteController
 {
     /** @var BlogRepository */
     private $blogRepository;
@@ -29,7 +29,7 @@ class BlogController extends QuarxController
     {
         $blogs = $this->blogRepository->paginated();
 
-        return view('quarx::modules.blogs.index')
+        return view('quicksite::modules.blogs.index')
             ->with('blogs', $blogs)
             ->with('pagination', $blogs->render());
     }
@@ -47,7 +47,7 @@ class BlogController extends QuarxController
 
         $result = $this->blogRepository->search($input);
 
-        return view('quarx::modules.blogs.index')
+        return view('quicksite::modules.blogs.index')
             ->with('blogs', $result[0]->get())
             ->with('pagination', $result[2])
             ->with('term', $result[1]);
@@ -60,7 +60,7 @@ class BlogController extends QuarxController
      */
     public function create()
     {
-        return view('quarx::modules.blogs.create');
+        return view('quicksite::modules.blogs.create');
     }
 
     /**
@@ -76,16 +76,16 @@ class BlogController extends QuarxController
 
         if (!$validation['errors']) {
             $blog = $this->blogRepository->store($request->all());
-            Quarx::notification('Blog saved successfully.', 'success');
+            quicksite::notification('Blog saved successfully.', 'success');
         } else {
             return $validation['redirect'];
         }
 
         if (!$blog) {
-            Quarx::notification('Blog could not be saved.', 'warning');
+            quicksite::notification('Blog could not be saved.', 'warning');
         }
 
-        return redirect(route('quarx.blog.edit', [$blog->id]));
+        return redirect(route('quicksite.blog.edit', [$blog->id]));
     }
 
     /**
@@ -100,12 +100,12 @@ class BlogController extends QuarxController
         $blog = $this->blogRepository->findBlogById($id);
 
         if (empty($blog)) {
-            Quarx::notification('Blog not found', 'warning');
+            quicksite::notification('Blog not found', 'warning');
 
-            return redirect(route('quarx.blog.index'));
+            return redirect(route('quicksite.blog.index'));
         }
 
-        return view('quarx::modules.blogs.edit')->with('blog', $blog);
+        return view('quicksite::modules.blogs.edit')->with('blog', $blog);
     }
 
     /**
@@ -121,16 +121,16 @@ class BlogController extends QuarxController
         $blog = $this->blogRepository->findBlogById($id);
 
         if (empty($blog)) {
-            Quarx::notification('Blog not found', 'warning');
+            quicksite::notification('Blog not found', 'warning');
 
-            return redirect(route('quarx.blog.index'));
+            return redirect(route('quicksite.blog.index'));
         }
 
         $blog = $this->blogRepository->update($blog, $request->all());
-        Quarx::notification('Blog updated successfully.', 'success');
+        quicksite::notification('Blog updated successfully.', 'success');
 
         if (!$blog) {
-            Quarx::notification('Blog could not be saved.', 'warning');
+            quicksite::notification('Blog could not be saved.', 'warning');
         }
 
         return redirect(URL::previous());
@@ -148,15 +148,15 @@ class BlogController extends QuarxController
         $blog = $this->blogRepository->findBlogById($id);
 
         if (empty($blog)) {
-            Quarx::notification('Blog not found', 'warning');
+            quicksite::notification('Blog not found', 'warning');
 
-            return redirect(route('quarx.blog.index'));
+            return redirect(route('quicksite.blog.index'));
         }
 
         $blog->delete();
 
-        Quarx::notification('Blog deleted successfully.', 'success');
+        quicksite::notification('Blog deleted successfully.', 'success');
 
-        return redirect(route('quarx.blog.index'));
+        return redirect(route('quicksite.blog.index'));
     }
 }

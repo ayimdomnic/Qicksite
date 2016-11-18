@@ -1,1 +1,1 @@
-@extends('quarx::layouts.dashboard')
+@extends('quicksite::layouts.dashboard')

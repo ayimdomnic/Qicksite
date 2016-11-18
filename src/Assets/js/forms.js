@@ -1,6 +1,6 @@
 /*
 |--------------------------------------------------------------------------
-| Quarx JS
+| quicksite JS
 |--------------------------------------------------------------------------
 */
 
@@ -15,8 +15,8 @@ var _redactorConfig = {
     paragraphize: false,
     pastePlaintext: true,
     deniedTags: ['script'],
-    imageManagerJson: _url+'/quarx/api/images/list',
-    fileManagerJson: _url+'/quarx/api/files/list',
+    imageManagerJson: _url+'/quicksite/api/images/list',
+    fileManagerJson: _url+'/quicksite/api/files/list',
     stockImageManagerJson: 'https://pixabay.com/api/',
     plugins: ['table','video', 'fontcolor', 'imagemanager', 'stockimagemanager', 'filemanager', 'specialchar'],
     buttons: ['html', 'formatting', 'fontcolor', 'bold', 'italic', 'underline', 'deleted', 'unorderedlist', 'orderedlist',

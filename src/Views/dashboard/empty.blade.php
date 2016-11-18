@@ -1,4 +1,4 @@
-@extends('quarx::layouts.dashboard')
+@extends('quicksite::layouts.dashboard')
 
 @section('content')
 
@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <h1 class="page-header text-center">Dashboard</h1>
 
-                <p>The Quarx dashboard is powered by Google Analytics. By following the directions below, you will enable the Google Analytics charts and data sets on your dashboard.</p>
+                <p>The quicksite dashboard is powered by Google Analytics. By following the directions below, you will enable the Google Analytics charts and data sets on your dashboard.</p>
 
                 <p>First run:</p>
 <pre>

@@ -1,11 +1,11 @@
 <?php
 
-namespace Yab\Quarx\Requests;
+namespace Ayimdomnic\QuickSite\Requests;
 
 use Auth;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
-use Yab\Quarx\Models\Link;
+use Ayimdomnic\QuickSite\Models\Link;
 
 class LinksRequest extends FormRequest
 {
@@ -17,7 +17,7 @@ class LinksRequest extends FormRequest
     public function authorize()
     {
         if (env('APP_ENV') !== 'testing') {
-            return Gate::allows('quarx', Auth::user());
+            return Gate::allows('quicksite', Auth::user());
         }
 
         return true;

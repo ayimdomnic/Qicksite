@@ -1,6 +1,6 @@
 <div class="row">
     <ol class="breadcrumb">
-        {!! Quarx::breadcrumbs($location) !!}
+        {!! quicksite::breadcrumbs($location) !!}
         <li class="active"></li>
     </ol>
 </div>

@@ -1,16 +1,16 @@
 <?php
 
-namespace Yab\Quarx\Controllers;
+namespace Ayimdomnic\QuickSite\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
-use Quarx;
-use Yab\Quarx\Models\Link;
-use Yab\Quarx\Repositories\LinkRepository;
-use Yab\Quarx\Requests\LinksRequest;
-use Yab\Quarx\Services\ValidationService;
+use quicksite;
+use Ayimdomnic\QuickSite\Models\Link;
+use Ayimdomnic\QuickSite\Repositories\LinkRepository;
+use Ayimdomnic\QuickSite\Requests\LinksRequest;
+use Ayimdomnic\QuickSite\Services\ValidationService;
 
-class LinksController extends QuarxController
+class LinksController extends quicksiteController
 {
     /** @var LinkRepository */
     private $linksRepository;
@@ -29,7 +29,7 @@ class LinksController extends QuarxController
     {
         $result = $this->linksRepository->paginated();
 
-        return view('quarx::modules.links.index')
+        return view('quicksite::modules.links.index')
             ->with('links', $result)
             ->with('pagination', $result->render());
     }
@@ -43,7 +43,7 @@ class LinksController extends QuarxController
     {
         $menu = $request->get('m');
 
-        return view('quarx::modules.links.create')->with('menu_id', $menu);
+        return view('quicksite::modules.links.create')->with('menu_id', $menu);
     }
 
     /**
@@ -60,19 +60,19 @@ class LinksController extends QuarxController
 
             if (!$validation['errors']) {
                 $links = $this->linksRepository->store($request->all());
-                Quarx::notification('Link saved successfully.', 'success');
+                quicksite::notification('Link saved successfully.', 'success');
 
                 if (!$links) {
-                    Quarx::notification('Link could not be saved.', 'danger');
+                    quicksite::notification('Link could not be saved.', 'danger');
                 }
             } else {
                 return $validation['redirect'];
             }
         } catch (Exception $e) {
-            Quarx::notification($e->getMessage() ?: 'Link could not be saved.', 'danger');
+            quicksite::notification($e->getMessage() ?: 'Link could not be saved.', 'danger');
         }
 
-        return redirect(URL::to('quarx/menus/'.$request->get('menu_id').'/edit'));
+        return redirect(URL::to('quicksite/menus/'.$request->get('menu_id').'/edit'));
     }
 
     /**
@@ -87,12 +87,12 @@ class LinksController extends QuarxController
         $links = $this->linksRepository->findLinksById($id);
 
         if (empty($links)) {
-            Quarx::notification('Link not found', 'warning');
+            quicksite::notification('Link not found', 'warning');
 
-            return redirect(route('quarx.links.index'));
+            return redirect(route('quicksite.links.index'));
         }
 
-        return view('quarx::modules.links.edit')->with('links', $links);
+        return view('quicksite::modules.links.edit')->with('links', $links);
     }
 
     /**
@@ -109,22 +109,22 @@ class LinksController extends QuarxController
             $links = $this->linksRepository->findLinksById($id);
 
             if (empty($links)) {
-                Quarx::notification('Link not found', 'warning');
+                quicksite::notification('Link not found', 'warning');
 
-                return redirect(route('quarx.links.index'));
+                return redirect(route('quicksite.links.index'));
             }
 
             $links = $this->linksRepository->update($links, $request->all());
-            Quarx::notification('Link updated successfully.', 'success');
+            quicksite::notification('Link updated successfully.', 'success');
 
             if (!$links) {
-                Quarx::notification('Link could not be updated.', 'danger');
+                quicksite::notification('Link could not be updated.', 'danger');
             }
         } catch (Exception $e) {
-            Quarx::notification($e->getMessage() ?: 'Links could not be updated.', 'danger');
+            quicksite::notification($e->getMessage() ?: 'Links could not be updated.', 'danger');
         }
 
-        return redirect(route('quarx.links.edit', [$id]));
+        return redirect(route('quicksite.links.edit', [$id]));
     }
 
     /**
@@ -140,15 +140,15 @@ class LinksController extends QuarxController
         $menu = $links->menu_id;
 
         if (empty($links)) {
-            Quarx::notification('Link not found', 'warning');
+            quicksite::notification('Link not found', 'warning');
 
-            return redirect(route('quarx.links.index'));
+            return redirect(route('quicksite.links.index'));
         }
 
         $links->delete();
 
-        Quarx::notification('Link deleted successfully.', 'success');
+        quicksite::notification('Link deleted successfully.', 'success');
 
-        return redirect(URL::to('quarx/menus/'.$menu.'/edit'));
+        return redirect(URL::to('quicksite/menus/'.$menu.'/edit'));
     }
 }

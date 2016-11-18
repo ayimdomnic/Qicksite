@@ -1,4 +1,4 @@
-@extends('quarx::layouts.dashboard')
+@extends('quicksite::layouts.dashboard')
 
 @section('content')
 
@@ -6,15 +6,15 @@
         <h1 class="page-header">Menus</h1>
     </div>
 
-    @include('quarx::modules.menus.breadcrumbs', ['location' => ['edit']])
+    @include('quicksite::modules.menus.breadcrumbs', ['location' => ['edit']])
 
     <div class="row">
-        {!! Form::model($menu, ['route' => ['quarx.menus.update', $menu->id], 'method' => 'patch', 'class' => 'edit']) !!}
+        {!! Form::model($menu, ['route' => ['quicksite.menus.update', $menu->id], 'method' => 'patch', 'class' => 'edit']) !!}
 
-            {!! FormMaker::fromObject($menu, Config::get('quarx.forms.menu')) !!}
+            {!! FormMaker::fromObject($menu, Config::get('quicksite.forms.menu')) !!}
 
             <div class="form-group text-right">
-                <a href="{!! URL::to('quarx/menus') !!}" class="btn btn-default raw-left">Cancel</a>
+                <a href="{!! URL::to('quicksite/menus') !!}" class="btn btn-default raw-left">Cancel</a>
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
             </div>
 
@@ -23,9 +23,9 @@
 
     <div class="row">
         <div class="col-12">
-            <a class="btn btn-info pull-right" href="{!! URL::to('quarx/links/create?m='.$menu->id) !!}">Add Link</a>
+            <a class="btn btn-info pull-right" href="{!! URL::to('quicksite/links/create?m='.$menu->id) !!}">Add Link</a>
             <h1>Links</h1>
-            @include('quarx::modules.links.index')
+            @include('quicksite::modules.links.index')
         </div>
     </div>
 

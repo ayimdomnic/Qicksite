@@ -26,7 +26,7 @@ RedactorPlugins.imagemanager = function()
                 dataType: "json",
                 cache: false,
                 headers: {
-                    Quarx: _apiKey,
+                    quicksite: _apiKey,
                     Authorization: 'Bearer '+_apiToken
                 },
                 url: this.opts.imageManagerJson,

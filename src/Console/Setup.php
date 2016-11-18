@@ -1,6 +1,6 @@
 <?php
 
-namespace Yab\Quarx\Console;
+namespace Ayimdomnic\QuickSite\Console;
 
 use App\Models\Role;
 use App\Models\User;
@@ -20,14 +20,14 @@ class Setup extends Command
      *
      * @var string
      */
-    protected $name = 'quarx:setup';
+    protected $name = 'quicksite:setup';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Quarx will setup your site';
+    protected $description = 'quicksite will setup your site';
 
     /**
      * Execute the console command.
@@ -40,7 +40,7 @@ class Setup extends Command
 
         if ($cssReady) {
             Artisan::call('vendor:publish', [
-                '--provider' => 'Yab\Quarx\QuarxProvider',
+                '--provider' => 'Ayimdomnic\QuickSite\quicksiteProvider',
                 '--force'    => true,
             ]);
 
@@ -130,7 +130,7 @@ class Setup extends Command
             }
             $service->create($user, 'admin', 'admin', false);
 
-            $this->info('Finished setting up your site with Quarx!');
+            $this->info('Finished setting up your site with quicksite!');
             $this->info('Please run:');
             $this->comment('npm install');
             $this->comment('gulp');
@@ -188,16 +188,16 @@ class Setup extends Command
 
         // Route setup
         $routeContents = file_get_contents(app_path('Providers/RouteServiceProvider.php'));
-        $routeContents = str_replace("require base_path('routes/web.php');", "require base_path('routes/web.php');\n\t\t\trequire base_path('routes/quarx.php');", $routeContents);
+        $routeContents = str_replace("require base_path('routes/web.php');", "require base_path('routes/web.php');\n\t\t\trequire base_path('routes/quicksite.php');", $routeContents);
         file_put_contents(app_path('Providers/RouteServiceProvider.php'), $routeContents);
 
         $routeToDashboardContents = file_get_contents(base_path('routes/web.php'));
-        $routeToDashboardContents = str_replace("Route::get('/dashboard', 'PagesController@dashboard');", "Route::get('/dashboard', function(){ return Redirect::to('quarx/dashboard'); });", $routeToDashboardContents);
+        $routeToDashboardContents = str_replace("Route::get('/dashboard', 'PagesController@dashboard');", "Route::get('/dashboard', function(){ return Redirect::to('quicksite/dashboard'); });", $routeToDashboardContents);
         file_put_contents(base_path('routes/web.php'), $routeToDashboardContents);
 
         // Kernel setup
         $routeContents = file_get_contents(app_path('Http/Kernel.php'));
-        $routeContents = str_replace("'auth' => \Illuminate\Auth\Middleware\Authenticate::class,", "'auth' => \Illuminate\Auth\Middleware\Authenticate::class,\n\t\t'quarx' => \App\Http\Middleware\Quarx::class,\n\t\t'quarx-api' => \App\Http\Middleware\QuarxApi::class,\n\t\t'admin' => \App\Http\Middleware\Admin::class,\n\t\t'active' => \App\Http\Middleware\Active::class,", $routeContents);
+        $routeContents = str_replace("'auth' => \Illuminate\Auth\Middleware\Authenticate::class,", "'auth' => \Illuminate\Auth\Middleware\Authenticate::class,\n\t\t'quicksite' => \App\Http\Middleware\quicksite::class,\n\t\t'quicksite-api' => \App\Http\Middleware\quicksiteApi::class,\n\t\t'admin' => \App\Http\Middleware\Admin::class,\n\t\t'active' => \App\Http\Middleware\Active::class,", $routeContents);
         file_put_contents(app_path('Http/Kernel.php'), $routeContents);
 
         $fileSystem = new Filesystem();
@@ -216,7 +216,7 @@ class Setup extends Command
 
         // AuthProviders
         $authProviderContents = file_get_contents(app_path('Providers/AuthServiceProvider.php'));
-        $authProviderContents = str_replace('$this->registerPolicies();', "\$this->registerPolicies();\n\t\t\Gate::define('quarx', function (\$user) {\n\t\t\treturn (\$user->roles->first()->name === 'admin');\n\t\t});\n\t\t\Gate::define('admin', function (\$user) {\n\t\t\treturn (\$user->roles->first()->name === 'admin');\n\t\t});", $authProviderContents);
+        $authProviderContents = str_replace('$this->registerPolicies();', "\$this->registerPolicies();\n\t\t\Gate::define('quicksite', function (\$user) {\n\t\t\treturn (\$user->roles->first()->name === 'admin');\n\t\t});\n\t\t\Gate::define('admin', function (\$user) {\n\t\t\treturn (\$user->roles->first()->name === 'admin');\n\t\t});", $authProviderContents);
         file_put_contents(app_path('Providers/AuthServiceProvider.php'), $authProviderContents);
 
         // Remove the teams
@@ -337,7 +337,7 @@ public function leaveAllTeams($userId)
         file_put_contents(base_path('resources/assets/sass/app.scss'), $css);
 
         $composer = file_get_contents(base_path('composer.json'));
-        $composer = str_replace('"App\\": "app/",', '"App\\": "app/",'."\n".'"Quarx\\Modules\\": "quarx/modules/",', $composer);
+        $composer = str_replace('"App\\": "app/",', '"App\\": "app/",'."\n".'"quicksite\\Modules\\": "quicksite/modules/",', $composer);
         file_put_contents(base_path('composer.json'), $composer);
     }
 

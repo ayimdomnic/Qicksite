@@ -1,4 +1,4 @@
-@extends('quarx-frontend::layout.master')
+@extends('quicksite-frontend::layout.master')
 
 @section('content')
 
@@ -10,7 +10,7 @@
 
     @foreach($faqs as $faq)
         <div class="container-fluid">
-        @if (config('app.locale') !== config('quarx.default-language'))
+        @if (config('app.locale') !== config('quicksite.default-language'))
             <blockquote>{!! $faq->translationData(config('app.locale'))->question !!}</blockquote>
             <div class="well">
                 {!! $faq->translationData(config('app.locale'))->answer !!}
@@ -30,6 +30,6 @@
 
 @endsection
 
-@section('quarx')
+@section('quicksite')
     @edit('faqs')
 @endsection

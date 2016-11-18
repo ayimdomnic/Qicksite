@@ -1,15 +1,15 @@
 <?php
 
-namespace Yab\Quarx\Controllers;
+namespace Ayimdomnic\QuickSite\Controllers;
 
 use Spatie\LaravelAnalytics\LaravelAnalyticsFacade as LaravelAnalytics;
 
-class DashboardController extends QuarxController
+class DashboardController extends quicksiteController
 {
     public function main()
     {
         if (is_null(env('ANALYTICS_SITE_ID'))) {
-            return view('quarx::dashboard.empty');
+            return view('quicksite::dashboard.empty');
         }
 
         foreach (LaravelAnalytics::getVisitorsAndPageViews(7) as $view) {
@@ -18,6 +18,6 @@ class DashboardController extends QuarxController
             $visitStats['pageViews'][] = $view['pageViews'];
         }
 
-        return view('quarx::dashboard.analytics', compact('visitStats', 'oneYear'));
+        return view('quicksite::dashboard.analytics', compact('visitStats', 'oneYear'));
     }
 }

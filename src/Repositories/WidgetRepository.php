@@ -1,9 +1,9 @@
 <?php
 
-namespace Yab\Quarx\Repositories;
+namespace Ayimdomnic\QuickSite\Repositories;
 
 use Illuminate\Support\Facades\Schema;
-use Yab\Quarx\Models\Widget;
+use Ayimdomnic\QuickSite\Models\Widget;
 
 class WidgetRepository
 {
@@ -89,8 +89,8 @@ class WidgetRepository
      */
     public function update($widgets, $payload)
     {
-        if (!empty($payload['lang']) && $payload['lang'] !== config('quarx.default-language', 'en')) {
-            return $this->translationRepo->createOrUpdate($widgets->id, 'Yab\Quarx\Models\Widget', $payload);
+        if (!empty($payload['lang']) && $payload['lang'] !== config('quicksite.default-language', 'en')) {
+            return $this->translationRepo->createOrUpdate($widgets->id, 'Ayimdomnic\QuickSite\Models\Widget', $payload);
         } else {
             unset($payload['lang']);
 

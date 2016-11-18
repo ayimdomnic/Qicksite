@@ -15,17 +15,17 @@ html, body {
     text-align: center;
 }
 
-.quarx-footer {
+.quicksite-footer {
     height: 60px;
     background-color: #333;
 }
 
-.quarx-footer p, .quarx-footer a {
+.quicksite-footer p, .quicksite-footer a {
     line-height: 60px;
     color: #FFF;
 }
 
-.quarx-footer a:hover {
+.quicksite-footer a:hover {
     color: #FFF;
 }
 
@@ -55,7 +55,7 @@ html, body {
 |--------------------------------------------------------------------------
 */
 
-.quarx-notification {
+.quicksite-notification {
     width: 260px;
     min-height: 30px;
     position: fixed;
@@ -66,20 +66,20 @@ html, body {
     padding: 8px 8px 0 8px;
 }
 
-.quarx-notify {
+.quicksite-notify {
     float: left;
     margin-left: 10px;
     width: 200px;
 }
 
-.quarx-notify-closer {
+.quicksite-notify-closer {
     width: 20px;
     margin-left: 10px;
     float: left;
     line-height: 20px;
 }
 
-.quarx-notify-closer-icon {
+.quicksite-notify-closer-icon {
     cursor: pointer;
 }
 
@@ -183,7 +183,7 @@ span.twitter-typeahead {
     overflow: hidden;
 }
 
-.quarx-errors li {
+.quicksite-errors li {
     list-style: none;
 }
 
@@ -209,7 +209,7 @@ span.twitter-typeahead {
     padding: 16px 0;
 }
 
-.quarx-logo {
+.quicksite-logo {
     background-color: #333;
     background-size: cover;
     background-position: center center;
@@ -225,7 +225,7 @@ span.twitter-typeahead {
 
 /*
 |--------------------------------------------------------------------------
-| Quarx Styles
+| quicksite Styles
 |--------------------------------------------------------------------------
 */
 

@@ -1,4 +1,4 @@
-@extends('quarx-frontend::layout.master')
+@extends('quicksite-frontend::layout.master')
 
 @section('content')
 
@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-8">
             @foreach($blogs as $blog)
-                @if (config('app.locale') !== config('quarx.default-language'))
+                @if (config('app.locale') !== config('quicksite.default-language'))
                     @if ($blog->translation(config('app.locale')))
                         <a href="{!! URL::to('blog/'.$blog->translation(config('app.locale'))->data->url) !!}"><p>{!! $blog->translation(config('app.locale'))->data->title !!} - <span>{!! $blog->published_at !!}</span></p></a>
                     @endif
@@ -32,6 +32,6 @@
 
 @endsection
 
-@section('quarx')
+@section('quicksite')
     @edit('blog')
 @endsection

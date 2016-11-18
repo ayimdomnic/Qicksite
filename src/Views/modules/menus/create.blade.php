@@ -1,4 +1,4 @@
-@extends('quarx::layouts.dashboard')
+@extends('quicksite::layouts.dashboard')
 
 @section('content')
 
@@ -6,15 +6,15 @@
         <h1 class="page-header">Menus</h1>
     </div>
 
-    @include('quarx::modules.menus.breadcrumbs', ['location' => ['create']])
+    @include('quicksite::modules.menus.breadcrumbs', ['location' => ['create']])
 
     <div class="row">
-        {!! Form::open(['route' => 'quarx.menus.store', 'class' => 'add']) !!}
+        {!! Form::open(['route' => 'quicksite.menus.store', 'class' => 'add']) !!}
 
-            {!! FormMaker::fromTable('menus', Config::get('quarx.forms.menu')) !!}
+            {!! FormMaker::fromTable('menus', Config::get('quicksite.forms.menu')) !!}
 
             <div class="form-group text-right">
-                <a href="{!! URL::to('quarx/menus') !!}" class="btn btn-default raw-left">Cancel</a>
+                <a href="{!! URL::to('quicksite/menus') !!}" class="btn btn-default raw-left">Cancel</a>
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
             </div>
 

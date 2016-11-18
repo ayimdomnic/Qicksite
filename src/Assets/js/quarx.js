@@ -53,30 +53,30 @@ $(function() {
 |--------------------------------------------------------------------------
 */
 
-function quarxNotify(message, _type) {
-    $(".quarx-notification").css("display", "block");
-    $(".quarx-notification").addClass(_type);
+function quicksiteNotify(message, _type) {
+    $(".quicksite-notification").css("display", "block");
+    $(".quicksite-notification").addClass(_type);
 
-    $(".quarx-notify-comment").html(message);
-    $(".quarx-notification").animate({
+    $(".quicksite-notify-comment").html(message);
+    $(".quicksite-notification").animate({
         right: "20px",
     });
 
-    $(".quarx-notify-closer-icon").click(function(){
-        $(".quarx-notification").animate({
+    $(".quicksite-notify-closer-icon").click(function(){
+        $(".quicksite-notification").animate({
             right: "-300px"
         },"", function(){
-            $(".quarx-notification").css("display", "none");
-            $(".quarx-notify-comment").html("");
+            $(".quicksite-notification").css("display", "none");
+            $(".quicksite-notify-comment").html("");
         });
     });
 
     setTimeout(function(){
-        $(".quarx-notification").animate({
+        $(".quicksite-notification").animate({
             right: "-300px"
         },"", function(){
-            $(".quarx-notification").css("display", "none");
-            $(".quarx-notify-comment").html("");
+            $(".quicksite-notification").css("display", "none");
+            $(".quicksite-notify-comment").html("");
         });
     }, 8000);
 }

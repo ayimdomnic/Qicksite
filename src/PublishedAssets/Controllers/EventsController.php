@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Quarx;
+namespace App\Http\Controllers\quicksite;
 
 use App\Http\Controllers\Controller;
-use Yab\Quarx\Repositories\EventRepository;
-use Yab\Quarx\Services\EventService;
+use Ayimdomnic\QuickSite\Repositories\EventRepository;
+use Ayimdomnic\QuickSite\Services\EventService;
 
 class EventsController extends Controller
 {
@@ -36,7 +36,7 @@ class EventsController extends Controller
             abort(404);
         }
 
-        return view('quarx-frontend::events.calendar')
+        return view('quicksite-frontend::events.calendar')
             ->with('events', $events)
             ->with('calendar', $calendar);
     }
@@ -54,7 +54,7 @@ class EventsController extends Controller
             abort(404);
         }
 
-        return view('quarx-frontend::events.date')->with('events', $events);
+        return view('quicksite-frontend::events.date')->with('events', $events);
     }
 
     /**
@@ -70,7 +70,7 @@ class EventsController extends Controller
             abort(404);
         }
 
-        return view('quarx-frontend::events.all')->with('events', $events);
+        return view('quicksite-frontend::events.all')->with('events', $events);
     }
 
     /**
@@ -88,6 +88,6 @@ class EventsController extends Controller
             abort(404);
         }
 
-        return view('quarx-frontend::events.'.$event->template)->with('event', $event);
+        return view('quicksite-frontend::events.'.$event->template)->with('event', $event);
     }
 }

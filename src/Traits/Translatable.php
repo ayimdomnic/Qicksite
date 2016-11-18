@@ -1,8 +1,8 @@
 <?php
 
-namespace Yab\Quarx\Traits;
+namespace Ayimdomnic\QuickSite\Traits;
 
-use Yab\Quarx\Models\Translation;
+use Ayimdomnic\QuickSite\Models\Translation;
 
 trait Translatable
 {

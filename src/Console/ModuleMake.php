@@ -1,6 +1,6 @@
 <?php
 
-namespace Yab\Quarx\Console;
+namespace Ayimdomnic\QuickSite\Console;
 
 use Artisan;
 use Config;
@@ -21,7 +21,7 @@ class ModuleMake extends Command
      *
      * @var string
      */
-    protected $description = 'Generate a module for Quarx';
+    protected $description = 'Generate a module for quicksite';
 
     /**
      * Generate a CRUD stack.
@@ -34,21 +34,21 @@ class ModuleMake extends Command
 
         $name = ucfirst(str_singular($this->argument('name')));
 
-        $moduleDirectory = base_path('quarx/modules/'.ucfirst(($name)));
+        $moduleDirectory = base_path('quicksite/modules/'.ucfirst(($name)));
 
-        if (!is_dir(base_path('quarx'))) {
-            @mkdir(base_path('quarx'));
+        if (!is_dir(base_path('quicksite'))) {
+            @mkdir(base_path('quicksite'));
         }
 
-        if (!is_dir(base_path('quarx/modules'))) {
-            @mkdir(base_path('quarx/modules'));
+        if (!is_dir(base_path('quicksite/modules'))) {
+            @mkdir(base_path('quicksite/modules'));
         }
 
         @mkdir($moduleDirectory);
         @mkdir($moduleDirectory.'/Assets');
         @mkdir($moduleDirectory.'/Publishes');
         @mkdir($moduleDirectory.'/Publishes/app/Http', 0777, true);
-        @mkdir($moduleDirectory.'/Publishes/app/Http/Controllers/Quarx', 0777, true);
+        @mkdir($moduleDirectory.'/Publishes/app/Http/Controllers/quicksite', 0777, true);
         @mkdir($moduleDirectory.'/Publishes/resources/themes/default', 0777, true);
         @mkdir($moduleDirectory.'/Controllers');
         @mkdir($moduleDirectory.'/Services');
@@ -56,7 +56,7 @@ class ModuleMake extends Command
         @mkdir($moduleDirectory.'/Tests');
 
         file_put_contents($moduleDirectory.'/config.php', "<?php \n\n\n return [];");
-        file_put_contents($moduleDirectory.'/Views/menu.blade.php', "<li><a href=\"<?= URL::to('quarx/".strtolower(($name))."'); ?>\"><span class=\"fa fa-file\"></span> ".ucfirst(($name)).'</a></li>');
+        file_put_contents($moduleDirectory.'/Views/menu.blade.php', "<li><a href=\"<?= URL::to('quicksite/".strtolower(($name))."'); ?>\"><span class=\"fa fa-file\"></span> ".ucfirst(($name)).'</a></li>');
 
         $config = [
             'bootstrap'                  => false,
@@ -66,11 +66,11 @@ class ModuleMake extends Command
             '_path_views_'               => $moduleDirectory.'/Views',
             '_path_tests_'               => $moduleDirectory.'/Tests',
             '_path_routes_'              => $moduleDirectory.'/routes.php',
-            'routes_prefix'              => "<?php \n\nRoute::group(['namespace' => 'Quarx\Modules\\".ucfirst(($name))."\Controllers', 'prefix' => 'quarx', 'middleware' => ['web', 'auth', 'quarx']], function () { \n\n",
+            'routes_prefix'              => "<?php \n\nRoute::group(['namespace' => 'quicksite\Modules\\".ucfirst(($name))."\Controllers', 'prefix' => 'quicksite', 'middleware' => ['web', 'auth', 'quicksite']], function () { \n\n",
             'routes_suffix'              => "\n\n});",
             '_app_namespace_'            => app()->getInstance()->getNamespace(),
-            '_namespace_services_'       => 'Quarx\Modules\\'.ucfirst(($name)).'\Services',
-            '_namespace_controller_'     => 'Quarx\Modules\\'.ucfirst(($name)).'\Controllers',
+            '_namespace_services_'       => 'quicksite\Modules\\'.ucfirst(($name)).'\Services',
+            '_namespace_controller_'     => 'quicksite\Modules\\'.ucfirst(($name)).'\Controllers',
             '_name_name_'                => (strtolower($name)),
             '_lower_case_'               => strtolower($name),
             '_lower_casePlural_'         => (strtolower($name)),
@@ -83,11 +83,11 @@ class ModuleMake extends Command
 
         $appConfig = $config;
         $appConfig['template_source'] = __DIR__.'/../Templates/AppBasic/';
-        $appConfig['_path_controller_'] = $moduleDirectory.'/Publishes/app/Http/Controllers/Quarx';
+        $appConfig['_path_controller_'] = $moduleDirectory.'/Publishes/app/Http/Controllers/quicksite';
         $appConfig['_path_views_'] = $moduleDirectory.'/Publishes/resources/themes/default';
         $appConfig['_path_routes_'] = $moduleDirectory.'/Publishes/app/Http/'.$config['_lower_casePlural_'].'-routes.php';
-        $appConfig['_namespace_controller_'] = $config['_app_namespace_'].'Http\Controllers\Quarx';
-        $appConfig['routes_prefix'] = "<?php \n\nRoute::group(['namespace' => 'Quarx', 'middleware' => ['web']], function () {\n\n";
+        $appConfig['_namespace_controller_'] = $config['_app_namespace_'].'Http\Controllers\quicksite';
+        $appConfig['routes_prefix'] = "<?php \n\nRoute::group(['namespace' => 'quicksite', 'middleware' => ['web']], function () {\n\n";
         $appConfig['routes_suffix'] = "\n\n});";
 
         try {

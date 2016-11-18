@@ -1,17 +1,17 @@
 <?php
 
-namespace Yab\Quarx\Controllers;
+namespace Ayimdomnic\QuickSite\Controllers;
 
 use Illuminate\Http\Request;
-use Quarx;
+use quicksite;
 use Response;
 use URL;
-use Yab\Quarx\Models\Page;
-use Yab\Quarx\Repositories\PageRepository;
-use Yab\Quarx\Requests\PagesRequest;
-use Yab\Quarx\Services\ValidationService;
+use Ayimdomnic\QuickSite\Models\Page;
+use Ayimdomnic\QuickSite\Repositories\PageRepository;
+use Ayimdomnic\QuickSite\Requests\PagesRequest;
+use Ayimdomnic\QuickSite\Services\ValidationService;
 
-class PagesController extends QuarxController
+class PagesController extends quicksiteController
 {
     /** @var PageRepository */
     private $pagesRepository;
@@ -30,7 +30,7 @@ class PagesController extends QuarxController
     {
         $result = $this->pagesRepository->paginated();
 
-        return view('quarx::modules.pages.index')
+        return view('quicksite::modules.pages.index')
             ->with('pages', $result)
             ->with('pagination', $result->render());
     }
@@ -48,7 +48,7 @@ class PagesController extends QuarxController
 
         $result = $this->pagesRepository->search($input);
 
-        return view('quarx::modules.pages.index')
+        return view('quicksite::modules.pages.index')
             ->with('pages', $result[0]->get())
             ->with('pagination', $result[2])
             ->with('term', $result[1]);
@@ -61,7 +61,7 @@ class PagesController extends QuarxController
      */
     public function create()
     {
-        return view('quarx::modules.pages.create');
+        return view('quicksite::modules.pages.create');
     }
 
     /**
@@ -77,16 +77,16 @@ class PagesController extends QuarxController
 
         if (!$validation['errors']) {
             $pages = $this->pagesRepository->store($request->all());
-            Quarx::notification('Page saved successfully.', 'success');
+            quicksite::notification('Page saved successfully.', 'success');
         } else {
             return $validation['redirect'];
         }
 
         if (!$pages) {
-            Quarx::notification('Page could not be saved.', 'warning');
+            quicksite::notification('Page could not be saved.', 'warning');
         }
 
-        return redirect(route('quarx.pages.edit', [$pages->id]));
+        return redirect(route('quicksite.pages.edit', [$pages->id]));
     }
 
     /**
@@ -101,12 +101,12 @@ class PagesController extends QuarxController
         $page = $this->pagesRepository->findPagesById($id);
 
         if (empty($page)) {
-            Quarx::notification('Page not found', 'warning');
+            quicksite::notification('Page not found', 'warning');
 
-            return redirect(route('quarx.pages.index'));
+            return redirect(route('quicksite.pages.index'));
         }
 
-        return view('quarx::modules.pages.edit')->with('page', $page);
+        return view('quicksite::modules.pages.edit')->with('page', $page);
     }
 
     /**
@@ -122,16 +122,16 @@ class PagesController extends QuarxController
         $pages = $this->pagesRepository->findPagesById($id);
 
         if (empty($pages)) {
-            Quarx::notification('Page not found', 'warning');
+            quicksite::notification('Page not found', 'warning');
 
-            return redirect(route('quarx.pages.index'));
+            return redirect(route('quicksite.pages.index'));
         }
 
         $pages = $this->pagesRepository->update($pages, $request->all());
-        Quarx::notification('Page updated successfully.', 'success');
+        quicksite::notification('Page updated successfully.', 'success');
 
         if (!$pages) {
-            Quarx::notification('Page could not be saved.', 'warning');
+            quicksite::notification('Page could not be saved.', 'warning');
         }
 
         return redirect(URL::previous());
@@ -149,15 +149,15 @@ class PagesController extends QuarxController
         $pages = $this->pagesRepository->findPagesById($id);
 
         if (empty($pages)) {
-            Quarx::notification('Page not found', 'warning');
+            quicksite::notification('Page not found', 'warning');
 
-            return redirect(route('quarx.pages.index'));
+            return redirect(route('quicksite.pages.index'));
         }
 
         $pages->delete();
 
-        Quarx::notification('Page deleted successfully.', 'success');
+        quicksite::notification('Page deleted successfully.', 'success');
 
-        return redirect(route('quarx.pages.index'));
+        return redirect(route('quicksite.pages.index'));
     }
 }
