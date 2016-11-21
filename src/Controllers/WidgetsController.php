@@ -7,7 +7,7 @@ use Ayimdomnic\QuickSite\Repositories\WidgetRepository;
 use Ayimdomnic\QuickSite\Requests\WidgetsRequest;
 use Ayimdomnic\QuickSite\Services\ValidationService;
 use Illuminate\Http\Request;
-use quicksite;
+use Quicksite;
 use URL;
 
 class WidgetsController extends quicksiteController
@@ -80,7 +80,7 @@ class WidgetsController extends quicksiteController
             return $validation['redirect'];
         }
 
-        quicksite::notification('Widgets saved successfully.', 'success');
+        Quicksite::notification('Widgets saved successfully.', 'success');
 
         return redirect(route('quicksite.widgets.edit', [$widgets->id]));
     }
@@ -97,7 +97,7 @@ class WidgetsController extends quicksiteController
         $widgets = $this->widgetsRepository->findWidgetsById($id);
 
         if (empty($widgets)) {
-            quicksite::notification('Widgets not found', 'warning');
+            Quicksite::notification('Widgets not found', 'warning');
 
             return redirect(route('quicksite.widgets.index'));
         }
@@ -118,14 +118,14 @@ class WidgetsController extends quicksiteController
         $widgets = $this->widgetsRepository->findWidgetsById($id);
 
         if (empty($widgets)) {
-            quicksite::notification('Widgets not found', 'warning');
+            Quicksite::notification('Widgets not found', 'warning');
 
             return redirect(route('quicksite.widgets.index'));
         }
 
         $widgets = $this->widgetsRepository->update($widgets, $request->all());
 
-        quicksite::notification('Widgets updated successfully.', 'success');
+        Quicksite::notification('Widgets updated successfully.', 'success');
 
         return redirect(URL::previous());
     }
@@ -142,14 +142,14 @@ class WidgetsController extends quicksiteController
         $widgets = $this->widgetsRepository->findWidgetsById($id);
 
         if (empty($widgets)) {
-            quicksite::notification('Widgets not found', 'warning');
+            Quicksite::notification('Widgets not found', 'warning');
 
             return redirect(route('quicksite.widgets.index'));
         }
 
         $widgets->delete();
 
-        quicksite::notification('Widgets deleted successfully.', 'success');
+        Quicksite::notification('Widgets deleted successfully.', 'success');
 
         return redirect(route('quicksite.widgets.index'));
     }

@@ -8,7 +8,7 @@ use Ayimdomnic\QuickSite\Repositories\MenuRepository;
 use Ayimdomnic\QuickSite\Requests\MenuRequest;
 use Ayimdomnic\QuickSite\Services\ValidationService;
 use Illuminate\Http\Request;
-use quicksite;
+use Quicksite;
 
 class MenuController extends quicksiteController
 {
@@ -78,16 +78,16 @@ class MenuController extends quicksiteController
 
             if (!$validation['errors']) {
                 $menu = $this->menuRepository->store($request->all());
-                quicksite::notification('Menu saved successfully.', 'success');
+                QuickSite::notification('Menu saved successfully.', 'success');
 
                 if (!$menu) {
-                    quicksite::notification('Menu could not be saved.', 'danger');
+                    QuickSite::notification('Menu could not be saved.', 'danger');
                 }
             } else {
                 return $validation['redirect'];
             }
         } catch (Exception $e) {
-            quicksite::notification($e->getMessage() ?: 'Menu could not be saved.', 'danger');
+            QuickSite::notification($e->getMessage() ?: 'Menu could not be saved.', 'danger');
         }
 
         return redirect(route('quicksite.menus.edit', [$menu->id]));
@@ -105,7 +105,7 @@ class MenuController extends quicksiteController
         $menu = $this->menuRepository->findMenuById($id);
 
         if (empty($menu)) {
-            quicksite::notification('Menu not found', 'warning');
+            QuickSite::notification('Menu not found', 'warning');
 
             return redirect(route('quicksite.menus.index'));
         }
@@ -129,19 +129,19 @@ class MenuController extends quicksiteController
             $menu = $this->menuRepository->findMenuById($id);
 
             if (empty($menu)) {
-                quicksite::notification('Menu not found', 'warning');
+                QuickSite::notification('Menu not found', 'warning');
 
                 return redirect(route('quicksite.menus.index'));
             }
 
             $menu = $this->menuRepository->update($menu, $request->all());
-            quicksite::notification('Menu updated successfully.', 'success');
+            QuickSite::notification('Menu updated successfully.', 'success');
 
             if (!$menu) {
-                quicksite::notification('Menu could not be updated.', 'danger');
+                QuickSite::notification('Menu could not be updated.', 'danger');
             }
         } catch (Exception $e) {
-            quicksite::notification($e->getMessage() ?: 'Menu could not be updated.', 'danger');
+            QuickSite::notification($e->getMessage() ?: 'Menu could not be updated.', 'danger');
         }
 
         return redirect(route('quicksite.menus.edit', [$id]));
@@ -159,14 +159,14 @@ class MenuController extends quicksiteController
         $menu = $this->menuRepository->findMenuById($id);
 
         if (empty($menu)) {
-            quicksite::notification('Menu not found', 'warning');
+            Quicksite::notification('Menu not found', 'warning');
 
             return redirect(route('quicksite.menus.index'));
         }
 
         $menu->delete();
 
-        quicksite::notification('Menu deleted successfully.');
+        Quicksite::notification('Menu deleted successfully.');
 
         return redirect(route('quicksite.menus.index'));
     }

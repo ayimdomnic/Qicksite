@@ -7,7 +7,7 @@ use Ayimdomnic\QuickSite\Repositories\PageRepository;
 use Ayimdomnic\QuickSite\Requests\PagesRequest;
 use Ayimdomnic\QuickSite\Services\ValidationService;
 use Illuminate\Http\Request;
-use quicksite;
+use Quicksite;
 use Response;
 use URL;
 
