@@ -23,8 +23,9 @@
 
     "require-dev": {
         "mockery/mockery": "^0.9.4",
-        "orchestra/testbench": "~3.0",
-        "mikey179/vfsStream": "^1.6"
+        "mikey179/vfsStream": "^1.6",
+        "orchestra/testbench": "~3.0"
+        
     },
     "autoload": {
         
