@@ -20,7 +20,7 @@
 
     <div class="raw100 raw-left navbar navbar-fixed-bottom">
         <div class="raw100 raw-left quicksite-footer">
-            <p class="raw-margin-left-20">Brought to you by: <a href="https://yabhq.com">Yab Inc.</a></p>
+            <p class="raw-margin-left-20">Brought to you by: <a href="https://twitter.com/sirdom__">Ayimdomnic</a></p>
         </div>
     </div>
 @stop

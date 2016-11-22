@@ -52,7 +52,7 @@
     @endif
 
     {!! ModuleService::menus() !!}
-    {!! quicksite::packageMenus() !!}
+    {!! QuickSite::packageMenus() !!}
 
     @if (Route::get('user/settings'))
         <li class="@if (Request::is('user/settings') || Request::is('user/password')) active @endif">

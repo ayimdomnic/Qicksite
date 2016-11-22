@@ -4,7 +4,7 @@
 
     <div class="overlay"></div>
 
-    {!! Minify::stylesheet(quicksite::asset('css/dashboard.css', 'text/css')) !!}
+    {!! Minify::stylesheet(Quicksite::asset('css/dashboard.css', 'text/css')) !!}
 
     <div class="row raw-margin-top-50">
         <div class="col-md-12">
@@ -14,7 +14,7 @@
 
     <div class="raw100 raw-left navbar navbar-fixed-bottom">
         <div class="raw100 raw-left quicksite-footer">
-            <p class="raw-margin-left-20">Brought to you by: <a href="https://yabhq.com">Yab Inc.</a></p>
+            <p class="raw-margin-left-20">Brought to you by: <a href="https://twitter.com/sirdom__">Ayimdomnic</a></p>
         </div>
     </div>
 @stop
