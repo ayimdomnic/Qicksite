@@ -46,7 +46,7 @@ class FileService
         // In case we don't want that file type
         if (!empty($fileTypes)) {
             if (!in_array($extension, $fileTypes)) {
-                throw new Exception('Incorrect file type', 1);
+                throw new Exception('Hiyo file si fresh buda', 1);
             }
         }
         Storage::disk(Config::get('quicksite.storage-location', 'local'))->put($directory.$newFileName.'.'.$extension, file_get_contents($fileName));
@@ -78,7 +78,7 @@ class FileService
             return false;
         }
         if (File::size($file) > Config::get('quicksite.max-file-upload-size', 6291456)) {
-            throw new Exception('This file is too large', 1);
+            throw new Exception('Hii file ni Kubwa sana', 1);
         }
         if (substr($directory, 0, -1) != '/') {
             $directory .= '/';
@@ -88,7 +88,7 @@ class FileService
         // In case we don't want that file type
         if (!empty($fileTypes)) {
             if (!in_array($extension, $fileTypes)) {
-                throw new Exception('Incorrect file type', 1);
+                throw new Exception('We chagua file fiti msee', 1);
             }
         }
         Storage::disk(Config::get('quicksite.storage-location', 'local'))->put($directory.$newFileName.'.'.$extension, File::get($file));

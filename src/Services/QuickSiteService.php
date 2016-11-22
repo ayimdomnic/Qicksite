@@ -1,12 +1,12 @@
 <?php
 
-namespace Ayimdomnic\Quicksite\Services;
+namespace Ayimdomnic\QuickSite\Services;
 
-use Ayimdomnic\Quicksite\Facades\CryptoServiceFacade;
-use Ayimdomnic\Quicksite\Repositories\LinkRepository;
-use Ayimdomnic\Quicksite\Repositories\MenuRepository;
-use Ayimdomnic\Quicksite\Repositories\PageRepository;
-use Ayimdomnic\Quicksite\Repositories\WidgetRepository;
+use Ayimdomnic\QuickSite\Facades\CryptoServiceFacade;
+use Ayimdomnic\QuickSite\Repositories\LinkRepository;
+use Ayimdomnic\QuickSite\Repositories\MenuRepository;
+use Ayimdomnic\QuickSite\Repositories\PageRepository;
+use Ayimdomnic\QuickSite\Repositories\WidgetRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -19,7 +19,7 @@ class QuickSiteService
 {
     public function __construct()
     {
-        $this->imageRepo = App::make('Ayimdomnic\Quicksite\Repositories\ImageRepository');
+        $this->imageRepo = App::make('Ayimdomnic\QuickSite\Repositories\ImageRepository');
     }
 
     /**

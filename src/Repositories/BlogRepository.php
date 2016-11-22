@@ -96,7 +96,7 @@ class BlogRepository
      */
     public function store($input)
     {
-        $input['url'] = quicksite::convertToURL($input['url']);
+        $input['url'] = QuickSite::convertToURL($input['url']);
         $input['is_published'] = (isset($input['is_published'])) ? (bool) $input['is_published'] : 0;
         $input['published_at'] = (isset($input['published_at']) && !empty($input['published_at'])) ? $input['published_at'] : Carbon::now()->format('Y-m-d h:i:s');
 
@@ -160,7 +160,7 @@ class BlogRepository
         if (!empty($payload['lang']) && $payload['lang'] !== config('quicksite.default-language', 'en')) {
             return $this->translationRepo->createOrUpdate($blog->id, 'Ayimdomnic\QuickSite\Models\Blog', $payload);
         } else {
-            $payload['url'] = quicksite::convertToURL($payload['url']);
+            $payload['url'] = QuickSite::convertToURL($payload['url']);
             $payload['is_published'] = (isset($payload['is_published'])) ? (bool) $payload['is_published'] : 0;
             $payload['published_at'] = (isset($payload['published_at']) && !empty($payload['published_at'])) ? $payload['published_at'] : Carbon::now()->format('Y-m-d h:i:s');
 
