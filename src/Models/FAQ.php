@@ -22,6 +22,7 @@ class FAQ extends QuickSiteModel
         'translations',
     ];
 
-    protected $trends = [
-    ];
+    // protected $trends = [
+    // 'getallheaders(oid)'
+    // ];
 }
