@@ -1,11 +1,11 @@
 <?php
 
-namespace app\Http\Middleware;
+namespace App\Http\Middleware;
 
 use Closure;
-use Config;
+use Gate;
 
-class QuarxApi
+class QuickSite
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class QuarxApi
      */
     public function handle($request, Closure $next)
     {
-        if (Config::get('quicksite.api-token') == $request->get('token')) {
+        if (Gate::allows('quicksite')) {
             return $next($request);
         }
 

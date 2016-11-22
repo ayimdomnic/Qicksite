@@ -14,7 +14,7 @@ return [
      * --------------------------------------------------------------------------
     */
 
-    'frontend-namespace' => '\App\Http\Controllers\quicksite',
+    'frontend-namespace' => '\App\Http\Controllers\QuickSite',
     'frontend-theme'     => 'default',
 
     /*
