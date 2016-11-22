@@ -4,7 +4,7 @@ namespace Ayimdomnic\QuickSite\Models;
 
 use Ayimdomnic\QuickSite\Traits\Translatable;
 
-class Blog extends quicksiteModel
+class Blog extends QuickSiteModel
 {
     use Translatable;
 

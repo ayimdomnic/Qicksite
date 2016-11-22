@@ -4,7 +4,7 @@ namespace Ayimdomnic\QuickSite\Models;
 
 use Ayimdomnic\QuickSite\Traits\Translatable;
 
-class Widget extends quicksiteModel
+class Widget extends QuickSiteModel
 {
     use Translatable;
 

@@ -6,7 +6,7 @@ use Ayimdomnic\QuickSite\Models\Page;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
-use quicksite;
+use QuickSite;
 
 class PageRepository
 {

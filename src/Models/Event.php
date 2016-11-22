@@ -4,7 +4,7 @@ namespace Ayimdomnic\QuickSite\Models;
 
 use Ayimdomnic\QuickSite\Traits\Translatable;
 
-class Event extends quicksiteModel
+class Event extends QuickSiteModel
 {
     use Translatable;
 

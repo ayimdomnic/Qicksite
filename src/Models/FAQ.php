@@ -4,7 +4,7 @@ namespace Ayimdomnic\QuickSite\Models;
 
 use Ayimdomnic\QuickSite\Traits\Translatable;
 
-class FAQ extends quicksiteModel
+class FAQ extends QuickSiteModel
 {
     use Translatable;
 
@@ -20,5 +20,8 @@ class FAQ extends quicksiteModel
 
     protected $appends = [
         'translations',
+    ];
+
+    protected $trends = [
     ];
 }
