@@ -34,4 +34,13 @@ trait Translatable
 
         return $translationData;
     }
+
+    public function throwExceptionOnFail()
+    {
+        try{
+            $this->translationData($lang);
+        } catch($e){
+            $e = echo "We are not ready";
+        }
+    }
 }
